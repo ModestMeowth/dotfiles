@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+f() {
+	local search
+	search=$1
+	find . -iname "*$search*"
+}
+
+resize() {
+    old=$(stty -g)
+    stty -echo
+    printf '\033[18t'
+    IFS=';' read -d t _ rows cols _
+    stty "$old"
+    stty cols "$cols" rows "$rows"
+}
+
+# chezmoi aliases
+alias ed='chezmoi edit'
+alias pull='chezmoi update'
+alias push='chezmoi git push'
+
+alias sc='shellcheck'
+alias rm='rm -i'
+{{ if eq .chezmoi.os "freebsd" -}}
+alias ls='ls -GFh'
+{{ else if eq .chezmoi.os "linux" -}}
+alias ls='ls --color=auto -Fh'
+alias zzz='sudo systemctl suspend'
+{{ end -}}
+
+# vim: ft=bash

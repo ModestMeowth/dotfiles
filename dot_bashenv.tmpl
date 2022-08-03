@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+for d in .local/bin .bin bin; do
+    [ -d "{{ .chezmoi.homeDir }}/$d" ] && PATH="{{ .chezmoi.homeDir }}/$d:$PATH"
+done; unset d
+
+if [ -d /usr/lib/go/bin ]; then
+    PATH="/usr/lib/go/bin:$PATH"
+fi
+
+if [ -f "$HOME/.cargo/env" ]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+export PATH
+export EDITOR=vim
+
+if [ -n "$SSH_CLIENT" ]; then
+    PROMPT_COLOR=11
+else
+    PROMPT_COLOR=6
+fi
+
+{{ if eq .chezmoi.os "freebsd" -}}
+    PS1="$(tput AF $PROMPT_COLOR)\u@\h:\w\[\e[m\] $ $(tput AF 7)"
+{{ else if eq .chezmoi.os "linux" -}}
+    PS1="$(tput setaf $PROMPT_COLOR)\u@\h:\w\[\e[m\] $ $(tput setaf 7)"
+{{ else -}}
+    PS1='\u@\h:\w $'
+{{ end -}}
+
+# vim: ft=bash

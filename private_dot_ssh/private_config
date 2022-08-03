@@ -1,0 +1,15 @@
+Match Host "pwnyboy.com"
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/ingsoc
+    HostName pwnyboy.com
+
+Match Host "ThoughtPolice.localdomain,ThoughtPolice"
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/ingsoc
+    Hostname 192.168.0.3
+
+Host github.com
+    Hostname github.com
+    IdentityFile ~/.ssh/github
+    User git
+# vim:ft=sshconfig

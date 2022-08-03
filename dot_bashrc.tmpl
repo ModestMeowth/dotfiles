@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+umask 0022
+
+#set -o vi
+
+{{ if eq .chezmoi.os "linux" -}}
+if [ -f /etc/bash.bashrc ]; then
+    source /etc/bash.bashrc
+fi
+{{ end }}
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+{{ if eq .chezmoi.os "freebsd" -}}
+	if [ -f /usr/local/share/bash-completion/bash_completion.sh ]; then
+		source /usr/local/share/bash-completion/bash_completion.sh
+	fi
+{{ else if eq .chezmoi.os "freebsd" -}}
+	if [ -f /etc/bash_completion ]; then
+		source /etc/bash_completion
+	fi
+{{ end -}}
+
+[ -r {{ .chezmoi.homeDir }}/.bashenv ] && source {{ .chezmoi.homeDir }}/.bashenv
+[ -r {{ .chezmoi.homeDir }}/.bashutils ] && source {{ .chezmoi.homeDir }}/.bashutils
+
+if [ $(command -v keychain) ]; then
+    keychain -q --nogui --host {{ .chezmoi.fqdnHostname }} github ingsoc
+    # shellcheck source=/dev/null
+    source {{ .chezmoi.homeDir }}/.keychain/{{ .chezmoi.fqdnHostname }}-sh
+fi
+
+if [ $(command -v fish) ]; then
+    if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]; then
+       exec fish
+   fi
+fi
+# vim: ft=bash
