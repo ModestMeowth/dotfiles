@@ -6,7 +6,7 @@ Match Host "pwnyboy.com,pb"
 Match Host "toybox.pwnyboy.com,toybox,tb"
     IdentitiesOnly yes
     IdentityFile ~/.ssh/ingsoc
-    HostName toyboyx.pwnyboy.com
+    HostName toybox.pwnyboy.com
 
 Match Host "ThoughtPolice.localdomain,ThoughtPolice,tp"
     IdentitiesOnly yes
