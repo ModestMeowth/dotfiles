@@ -1,9 +1,14 @@
-Match Host "pwnyboy.com"
+Match Host "pwnyboy.com,pb"
     IdentitiesOnly yes
     IdentityFile ~/.ssh/ingsoc
     HostName pwnyboy.com
 
-Match Host "ThoughtPolice.localdomain,ThoughtPolice"
+Match Host "toybox.pwnyboy.com,toybox,tb"
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/ingsoc
+    HostName toyboyx.pwnyboy.com
+
+Match Host "ThoughtPolice.localdomain,ThoughtPolice,tp"
     IdentitiesOnly yes
     IdentityFile ~/.ssh/ingsoc
     Hostname 192.168.0.3

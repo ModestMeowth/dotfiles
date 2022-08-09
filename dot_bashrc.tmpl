@@ -10,8 +10,12 @@ if [ -f /etc/bash.bashrc ]; then
 fi
 {{ end }}
 case $- in
-    *i*) ;;
-      *) return;;
+{{- if (.chezmoi.kernel.osrelease | lower | contains "wsl") }}
+    *i*) cd {{ .chezmoi.homeDir }};;
+{{- else }}
+    *i*);;
+{{- end }}
+    *) return;;
 esac
 
 {{ if eq .chezmoi.os "freebsd" -}}
@@ -35,7 +39,7 @@ fi
 
 if [ $(command -v fish) ]; then
     if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]; then
-       exec fish
+       exec fish 
    fi
 fi
 # vim: ft=bash
