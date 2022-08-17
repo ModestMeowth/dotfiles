@@ -29,7 +29,9 @@ fi
     PS1='\u@\h:\w $'
 {{ end -}}
 
+{{ if not (eq .chezmoi.fqdnHostname "toybox.pwnyboy.com") -}}
 DOCKER_HOST=ssh://toybox.pwnyboy.com
 export DOCKER_HOST
+{{ end -}}
 
 # vim: ft=bash
