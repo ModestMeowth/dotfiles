@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-for d in .local/bin .bin bin; do
-    [ -d "{{ .chezmoi.homeDir }}/$d" ] && PATH="{{ .chezmoi.homeDir }}/$d:$PATH"
-done; unset d
-
 if [ -d /usr/lib/go/bin ]; then
     PATH="/usr/lib/go/bin:$PATH"
 fi
@@ -12,8 +8,12 @@ if [ -f "$HOME/.cargo/env" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+for d in .local/bin .bin bin .emacs.d/bin; do
+    [ -d "{{ .chezmoi.homeDir }}/$d" ] && PATH="{{ .chezmoi.homeDir }}/$d:$PATH"
+done; unset d
+
 export PATH
-export EDITOR=vim
+export EDITOR=vim.nox
 
 if [ -n "$SSH_CLIENT" ]; then
     PROMPT_COLOR=11
@@ -29,9 +29,9 @@ fi
     PS1='\u@\h:\w $'
 {{ end -}}
 
-{{ if not (eq .chezmoi.fqdnHostname "toybox.pwnyboy.com") -}}
+{{ if not (eq .chezmoi.fqdnHostname "toybox.pwnyboy.com") }}
 DOCKER_HOST=ssh://toybox.pwnyboy.com
 export DOCKER_HOST
-{{ end -}}
+{{- end }}
 
 # vim: ft=bash

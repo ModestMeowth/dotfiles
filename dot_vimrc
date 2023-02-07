@@ -32,6 +32,8 @@ set foldenable
 nnoremap <space> za
 set foldlevelstart=10
 "}}}
+"
+colorscheme desert
 
 " Leader Shortcuts {{{
 let mapleader=","

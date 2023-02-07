@@ -11,7 +11,9 @@ fi
 {{ end }}
 case $- in
 {{- if (.chezmoi.kernel.osrelease | lower | contains "wsl") }}
-    *i*) cd {{ .chezmoi.homeDir }};;
+    *i*)
+        cd {{ .chezmoi.homeDir }}
+    ;;
 {{- else }}
     *i*);;
 {{- end }}
@@ -31,6 +33,11 @@ esac
 [ -r {{ .chezmoi.homeDir }}/.bashenv ] && source {{ .chezmoi.homeDir }}/.bashenv
 [ -r {{ .chezmoi.homeDir }}/.bashutils ] && source {{ .chezmoi.homeDir }}/.bashutils
 
+{{- if (.chezmoi.kernel.osrelease | lower | contains "wsl") }}
+# VPN breaks MTU adjust to compensate
+sudo /usr/sbin/ip link set dev eth0 mtu 1500
+{{ end -}}
+
 if [ $(command -v keychain) ]; then
     keychain -q --nogui --host {{ .chezmoi.fqdnHostname }} github ingsoc
     # shellcheck source=/dev/null
@@ -39,7 +46,7 @@ fi
 
 if [ $(command -v fish) ]; then
     if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]; then
-       exec fish 
-   fi
+        exec fish
+    fi
 fi
 # vim: ft=bash

@@ -1,20 +1,18 @@
-Match Host "pwnyboy.com,pb"
-    IdentitiesOnly yes
-    IdentityFile ~/.ssh/ingsoc
+Match Host "pwnyboy.com,pwnyboy,pb"
     HostName pwnyboy.com
 
-Match Host "toybox.pwnyboy.com,toybox,tb"
-    IdentitiesOnly yes
-    IdentityFile ~/.ssh/ingsoc
-    HostName toybox.pwnyboy.com
+Match Host "thoughtpolice.pwnyboy.com,thoughtpolice,tp"
+    Hostname thoughtpolice.pwnyboy.com
 
-Match Host "ThoughtPolice.localdomain,ThoughtPolice,tp"
-    IdentitiesOnly yes
-    IdentityFile ~/.ssh/ingsoc
-    Hostname 192.168.0.3
+Match Host "telescreen.pwnyboy.com,telescreen,ts"
+    Hostname telescreen.pwnyboy.com
+
+Match Host "rpi.pwnyboy.com,rpi"
+    Hostname rpi.pwnyboy.com
 
 Host github.com
     Hostname github.com
     IdentityFile ~/.ssh/github
     User git
+
 # vim:ft=sshconfig
