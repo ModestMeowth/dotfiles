@@ -33,10 +33,10 @@ esac
 [ -r {{ .chezmoi.homeDir }}/.bashenv ] && source {{ .chezmoi.homeDir }}/.bashenv
 [ -r {{ .chezmoi.homeDir }}/.bashutils ] && source {{ .chezmoi.homeDir }}/.bashutils
 
-{{- if (.chezmoi.kernel.osrelease | lower | contains "wsl") }}
+{{ if (.chezmoi.kernel.osrelease | lower | contains "wsl") -}}
 # VPN breaks MTU adjust to compensate
 sudo /usr/sbin/ip link set dev eth0 mtu 1500
-{{ end -}}
+{{- end }}
 
 if [ $(command -v keychain) ]; then
     keychain -q --nogui --host {{ .chezmoi.fqdnHostname }} github ingsoc

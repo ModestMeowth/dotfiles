@@ -1,4 +1,4 @@
-"# UI Layout {{{
+"# UI Layout
 set number
 set showcmd
 set nocursorline
@@ -6,15 +6,13 @@ set wildmenu
 set lazyredraw
 set showmatch
 set fillchars+=vert:┃
-" }}}
 
-" Searching {{{
+" Searching
 set smartcase
 set incsearch
 set hlsearch
-" }}}
 
-" Spaces & Tabs {{{
+" Spaces & Tabs
 set tabstop=4
 set expandtab
 set softtabstop=4
@@ -23,37 +21,34 @@ set modelines=1
 filetype indent on
 filetype plugin on
 set autoindent
-" }}}
 
-" Folding {{{
+" Folding
 set foldmethod=indent
 set foldnestmax=10
 set foldenable
 nnoremap <space> za
 set foldlevelstart=10
-"}}}
-"
+
 colorscheme desert
 
-" Leader Shortcuts {{{
+" Leader Shortcuts 
 let mapleader=","
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>l :call <SID>ToggleNumber()<CR>
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-" }}}
+
 inoremap jj <esc>
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
-" CtrlP {{{
+" CtrlP
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = '\vbuild/|dist/|venv/|target/|\.(o|swp|pyc|egg)$'
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-" }}}
 
-" Autogroups {{{
+" Autogroups
 augroup configgroup
     autocmd!
     autocmd FileType yaml setlocal tabstop=2
@@ -62,8 +57,13 @@ augroup configgroup
 augroup END
 
 au BufReadPost *.tmpl set filetype=gohtmltmpl
-" {{{
 
+" Auto install plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 " Vim Plug {{
 call plug#begin('~/.vim/plugged')
@@ -72,6 +72,7 @@ Plug 'bling/vim-airline'
 Plug 'kien/ctrlp.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'fatih/vim-go'
+Plug 'nickeb96/fish.vim'
 call plug#end()
 " }}}
 

@@ -12,8 +12,18 @@ for d in .local/bin .bin bin .emacs.d/bin; do
     [ -d "{{ .chezmoi.homeDir }}/$d" ] && PATH="{{ .chezmoi.homeDir }}/$d:$PATH"
 done; unset d
 
+EDITOR=vi
+
+if [ $(command -v vim) ]; then
+    EDITOR=vim
+fi
+
+if [ $(command -v vim.nox) ]; then
+    EDITOR=vim.nox
+fi
+
 export PATH
-export EDITOR=vim.nox
+export EDITOR
 
 if [ -n "$SSH_CLIENT" ]; then
     PROMPT_COLOR=11

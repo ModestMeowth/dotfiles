@@ -28,5 +28,8 @@ alias ls='ls -GFh'
 alias ls='ls --color=auto -Fh'
 alias zzz='sudo systemctl suspend'
 {{ end -}}
+if [ $(command -v vim.nox) ]; then
+    alias vim='vim.nox'
+fi
 
 # vim: ft=bash
