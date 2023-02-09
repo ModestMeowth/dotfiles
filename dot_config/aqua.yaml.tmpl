@@ -19,7 +19,7 @@ packages:
     {{- if (index . "agekey") }}
     - name: FiloSottile/age@v1.1.1
     {{-  end }}
-    {{-  if not .headless }}
+    {{-  if (index . "workstation") }}
     - name: cli/cli@v2.23.0
     - name: go-task/task@v3.20.0
     - name: direnv/direnv@v2.32.2
