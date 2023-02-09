@@ -1,82 +1,99 @@
-if type -q apt
-{{- if ne .chezmoi.username "root" }}
-    if type -q nala
-        abbr apti 'sudo nala install'
-        abbr aptr 'sudo nala remove'
-        abbr aptu 'sudo nala update'
-        abbr aptug 'sudo sh -c "nala update && nala upgrade"'
-    else
-        abbr apti 'sudo apt install'
-        abbr aptr 'sudo apt remove'
-        abbr aptu 'sudo apt update'
-        abbr aptug 'sudo sh -c "apt update && apt upgrade"'
+if not set -q MY_ABBR_SET
+    set -U MY_ABBR_SET true
+
+    if type -q apt
+    {{- if ne .chezmoi.username "root" }}
+        if type -q nala
+            abbr apti 'sudo nala install'
+            abbr aptr 'sudo nala remove'
+            abbr aptu 'sudo nala update'
+            abbr aptug 'sudo sh -c "nala update && nala upgrade"'
+        else
+            abbr apti 'sudo apt install'
+            abbr aptr 'sudo apt remove'
+            abbr aptu 'sudo apt update'
+            abbr aptug 'sudo sh -c "apt update && apt upgrade"'
+        end
+    {{- else }}
+        if type -q nala
+            abbr apti 'nala install'
+            abbr aptr 'nala remove'
+            abbr aptu 'nala update'
+            abbr aptug 'nala update && nala upgrade"'
+        else
+            abbr apti 'apt install'
+            abbr aptr 'apt remove'
+            abbr aptu 'apt update'
+            abbr aptug 'apt update && apt upgrade'
+    {{- end }}
     end
-{{- else }}
-    if type -q nala
-        abbr apti 'nala install'
-        abbr aptr 'nala remove'
-        abbr aptu 'nala update'
-        abbr aptug 'nala update && nala upgrade"'
+
+    if type -q vim.nox
+    {{- if ne .chezmoi.username "root" }}
+        abbr vi 'vim.nox'
+        abbr vim 'vim.nox'
+    {{- else }}
+        abbr vi 'vi'
+        abbr vim 'vi'
+    {{- end }}
+    end
+
+    if type -q git
+        abbr g 'git'
+        abbr ga 'git add'
+        abbr gaa 'git add --all'
+        abbr gc 'git commit'
+        abbr gcm 'git commit -m'
+        abbr gs 'git status'
+        abbr gp 'git push'
+        abbr gpl 'git pull'
+        abbr gl 'git log'
+        abbr gd 'git diff'
+        abbr gds 'git diff --staged'
+        abbr gr 'git restore .'
+        abbr grs 'git restore --staged .'
+    end
+
+    if type -q chezmoi
+        abbr c 'chezmoi'
+        abbr ca 'chezmoi apply'
+        abbr cu 'chezmoi update'
+        abbr ce 'chezmoi edit'
+        abbr cs 'chezmoi status'
+        abbr cc 'chezmoi cd'
+        abbr cg 'chezmoi git'
+        abbr cgs 'chezmoi git -- status'
+        abbr cgc 'chezmoi git -- commit'
+        abbr cgcm 'chezmoi git -- commit -m'
+        abbr cgp 'chezmoi git -- push'
+        abbr cgpl 'chezmoi git -- pull'
+        abbr cgd 'chezmoi git -- diff'
+        abbr cgds 'chezmoi git -- diff --staged'
+        abbr cgr 'chezmoi git -- restore .'
+        abbr cgrs 'chezmoi git -- restore --staged .'
+    end
+
+    if type -q thefuck
+        abbr fu 'fuck'
+    end
+
+    if type -q exa
+        abbr lsa 'exa -lag --icons --sort=type'
+        abbr l 'exa -lag --icons --sort=type'
+        abbr ll 'exa -l --icons --sort=type'
+        abbr la 'exa -lag --icons --sort=type'
     else
-        abbr apti 'apt install'
-        abbr aptr 'apt remove'
-        abbr aptu 'apt update'
-        abbr aptug 'apt update && apt upgrade'
-{{- end }}
-end
+        abbr lsa 'ls -lah'
+        abbr l 'ls -lah'
+        abbr ll 'ls -lh'
+        abbr la 'ls -1Ah'
+    end
 
-if type -q vim.nox
-{{- if ne .chezmoi.username "root" }}
-    abbr vi 'vim.nox'
-    abbr vim 'vim.nox'
-{{- else }}
-    abbr vi 'vi'
-    abbr vim 'vi'
-{{- end }}
-end
+    abbr cpr 'cp -rf'
+    abbr rmr 'rm -rf'
+    abbr md 'mkdir -p'
+    abbr rd 'rmdir'
 
-if type -q git
-    abbr g 'git'
-    abbr ga 'git add'
-    abbr gaa 'git add --all'
-    abbr gc 'git commit'
-    abbr gcm 'git commit -m'
-    abbr gs 'git status'
-    abbr gp 'git push'
-    abbr gpl 'git pull'
-    abbr gl 'git log'
-    abbr gd 'git diff'
-    abbr gds 'git diff --staged'
-    abbr gr 'git restore .'
-    abbr grs 'git restore --staged .'
+    abbr -a L --position anywhere --set-cursor "% | less"
+    abbr -a !! --position anywhere --function last_history_item
 end
-
-if type -q chezmoi
-    abbr c 'chezmoi'
-    abbr ca 'chezmoi apply'
-    abbr cu 'chezmoi update'
-    abbr ce 'chezmoi edit'
-    abbr cs 'chezmoi status'
-    abbr cc 'chezmoi cd'
-end
-
-if type -q thefuck
-    abbr fu 'fuck'
-end
-
-if type -q exa
-    abbr lsa 'exa -lag --icons --sort=type'
-    abbr l 'exa -lag --icons --sort=type'
-    abbr ll 'exa -l --icons --sort=type'
-    abbr la 'exa -lag --icons --sort=type'
-else
-    abbr lsa 'ls -lah'
-    abbr l 'ls -lah'
-    abbr ll 'ls -lh'
-    abbr la 'ls -1Ah'
-end
-
-abbr cpr 'cp -rf'
-abbr rmr 'rm -rf'
-abbr md 'mkdir -p'
-abbr rd 'rmdir'
