@@ -1,5 +1,5 @@
-if not set -q MY_ABBR_SET
-    set -U MY_ABBR_SET true
+#if not set -q MY_ABBR_SET
+#    set -U MY_ABBR_SET true
 
     if type -q apt
     {{- if ne .chezmoi.username "root" }}
@@ -19,18 +19,18 @@ if not set -q MY_ABBR_SET
             abbr apti 'nala install'
             abbr aptr 'nala remove'
             abbr aptu 'nala update'
-            abbr aptug 'nala update && nala upgrade"'
+            abbr aptug 'nala update && nala upgrade'
         else
-            abbr apti 'apt install'
-            abbr aptr 'apt remove'
-            abbr aptu 'apt update'
-            abbr aptug 'apt update && apt upgrade'
+            abbrapti 'apt install'
+            abbraptr 'apt remove'
+            abbraptu 'apt update'
+            abbraptug 'apt update && apt upgrade'
     {{- end }}
     end
 
     if type -q vim.nox
     {{- if ne .chezmoi.username "root" }}
-        abbr vi 'vim.nox'
+        abbr jvi 'vim.nox'
         abbr vim 'vim.nox'
     {{- else }}
         abbr vi 'vi'
@@ -96,4 +96,4 @@ if not set -q MY_ABBR_SET
 
     abbr -a L --position anywhere --set-cursor "% | less"
     abbr -a !! --position anywhere --function last_history_item
-end
+#end
