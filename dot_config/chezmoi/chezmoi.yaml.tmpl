@@ -1,4 +1,5 @@
 {{- $headless := false -}}
+{{- $workstation := false -}}
 {{- $agekey := false -}}
 
 {{- $hostname := .chezmoi.hostname -}}
@@ -15,6 +16,7 @@
 data:
   headless: {{ $headless }}
   agekey: {{ $agekey }}
+  workstation: {{ $workstation }}
 format: yaml
 encryption: age
 {{- if $agekey }}
