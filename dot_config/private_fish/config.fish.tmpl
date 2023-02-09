@@ -18,4 +18,10 @@ if status is-interactive
     if type -q direnv
         direnv hook fish | source
     end
+
+    if type -q keychain
+        if test -f {{ .chezmoi.homeDir }}/{{ .chezmoi.hostname }}-fish
+            source {{ .chezmoi.homeDir }}/{{ .chezmoi.hostname }}-fish
+        end 
+    end
 end
