@@ -18,7 +18,7 @@
 {{- if hasKey . "agekey" -}}
 {{-   $agekey = .agekey -}}
 {{- else if $interactive -}}
-{{-   $headless = promptBool "agekey" -}}
+{{-   $agekey = promptBool "agekey" -}}
 {{- end -}}
 
 {{- if $interactive -}}
