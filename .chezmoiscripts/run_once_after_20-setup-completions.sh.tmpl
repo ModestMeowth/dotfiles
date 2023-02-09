@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ $(command -v chezmoi) ]; then
+    chezmoi completion bash --output={{ .chezmoi.homeDir }}/.bash_completion/chezmoi.sh
+fi
+
+if [ $(command -v zellij) ]; then
+    zellij setup --generate-completion bash > {{ .chezmoi.homeDir }}/.bash_completion/zellij.sh
+fi

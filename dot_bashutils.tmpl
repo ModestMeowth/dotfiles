@@ -15,10 +15,14 @@ resize() {
     stty cols "$cols" rows "$rows"
 }
 
-# chezmoi aliases
-alias ed='chezmoi edit'
-alias pull='chezmoi update'
-alias push='chezmoi git push'
+if [ $(command -v chezmoi) ]; then
+    alias c='chezmoi'
+    alias ca='chezmoi apply'
+    alias cu='chezmoi update'
+    alias ce='chezmoi edit'
+    alias cs='chezmoi status'
+    alias cc='chezmoi cd'
+fi
 
 alias sc='shellcheck'
 alias rm='rm -i'

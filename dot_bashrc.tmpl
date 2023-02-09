@@ -43,10 +43,4 @@ if [ $(command -v keychain) ]; then
     # shellcheck source=/dev/null
     source {{ .chezmoi.homeDir }}/.keychain/{{ .chezmoi.fqdnHostname }}-sh
 fi
-
-if [ $(command -v fish) ]; then
-    if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]; then
-        exec fish
-    fi
-fi
 # vim: ft=bash

@@ -1,0 +1,32 @@
+{{- $headless := false -}}
+{{- $agekey := false -}}
+
+{{- $hostname := .chezmoi.hostname -}}
+
+{{- if eq $hostname "telescreen" -}}
+{{-   $headless = false -}}
+{{- end -}}
+
+
+{{- if eq $hostname "pwnyboy" -}}
+{{-   $headless = true -}}
+{{- end -}}
+
+data:
+  headless: {{ $headless }}
+  agekey: {{ $agekey }}
+format: yaml
+encryption: age
+{{- if $agekey }}
+age:
+  identity: {{ .chezmoi.homeDir }}/.config/sops/age/keys.txt
+{{- end }}
+merge:
+  command: vim.nox
+  args:
+    - -d
+    - "{{ "{{ .Destination }}" }}"
+    - "{{ "{{ .Source }}" }}"
+    - "{{ "{{ .Target }}" }}"
+git:
+  autoAdd: true
