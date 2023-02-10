@@ -33,6 +33,7 @@ encryption: age
 {{- if $agekey }}
 age:
   identity: {{ .chezmoi.homeDir }}/.config/sops/age/keys.txt
+  recipient: age14ppm9t2uyl3ant0ht2m0hfyuc6w6xhv8k4rmduhk3avv5wxdkypqcu846a
 {{- end }}
 merge:
   command: vim.nox
