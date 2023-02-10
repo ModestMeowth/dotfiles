@@ -4,11 +4,11 @@
 set -eufo pipefail
 
 # renovate: depName=aquaproj/aqua datasource=github-releases
-current_aqua_version=v1.33.0
+AQUA_VERSION=v1.33.0
 
-if [ ! $(command -v aqua) ] || [ $(aqua -v | head -n1 | cut -d" " -f3 | sed "s/^/v/") != $current_aqua_version ]; then
+if [ ! $(command -v aqua) ] || [ $(aqua -v | head -n1 | cut -d" " -f3 | sed "s/^/v/") != $AQUA_VERSION ]; then
     echo "installing / updating aqua\n"
-    curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.0.2/aqua-installer | bash -s -- -v $current_aqua_version
+    curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.0.2/aqua-installer | bash -s -- -v $AQUA_VERSION
     # AQUA_GLOBAL_CONFIG={{ .chezmoi.homeDir }}/.config/aqua.yaml rm -rf {{ .chezmoi.homeDir }}/.local/share/aquaproj-aqua && aqua install -a
 fi
 
