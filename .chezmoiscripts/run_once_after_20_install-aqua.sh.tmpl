@@ -3,7 +3,7 @@
 
 set -eufo pipefail
 
-AQUA_VERSION=v1.33.0 # renovate: github-releases>aquaproj/aqua
+AQUA_VERSION=v1.33.0 # renovate: aquaproj/aqua
 
 if [ ! $(command -v aqua) ] || [ $(aqua -v | head -n1 | cut -d" " -f3 | sed "s/^/v/") != $AQUA_VERSION ]; then
     echo "installing / updating aqua\n"
