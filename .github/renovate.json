@@ -6,7 +6,7 @@
         "github>aquaproj/aqua-renovate-config:file#1.5.2(dot_config/aqua\\.yaml\\.tmpl)",
         "github>aquaproj/aqua-renovate-config:golang-go#1.5.2(dot_config/aqua\\.yaml\\.tmpl)"
     ],
-    "regexMangers": [
+    "regexManagers": [
         {
             "fileMatch": ["\\.chezmoiscripts\\/.+\\.sh\\.tmpl$"],
             "matchStrings":[
