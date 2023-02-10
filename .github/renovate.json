@@ -1,0 +1,17 @@
+{
+    "$schema": "https://docs.renovate.com/renovate-schema.json",
+    "extends": [
+        "config:base",
+        "github>aquaproj/aqua-renovate-config:installer-script#1.5.2(.chezmoiscripts/.*install-aqua\\.sh\\.tmpl)",
+        "github>aquaproj/aqua-renovate-config:file#1.5.2(dot_config/aqua\\.yaml\\.tmpl)",
+        "github>aquaproj/aqua-renovate-config:golang-go#1.5.2(dot_config/aqua\\.yaml\\.tmpl)"
+    ],
+    "regexMangers": [
+        {
+            "fileMatch": ["\\.chezmoiscripts\\/.+\\.sh\\.tmpl$"],
+            "matchStrings":[
+                "# renovate depName=(?<depname>.*) datasource=(?<datasource>.*)\\n\\s*current_\\w+_version=(?<currentValue>.+)\\b"
+            ]
+        }
+    ]
+}
