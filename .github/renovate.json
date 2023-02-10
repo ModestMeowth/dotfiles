@@ -10,7 +10,7 @@
         {
             "fileMatch": ["\\.chezmoiscripts\\/.+\\.sh\\.tmpl$"],
             "matchStrings":[
-                "(?i)\\s*\\w*version=[\"']?(?<currentValue>.+)[\"']?\\s+#+\\s*renovate:\\s*source=[\"']?(?<datasource>.+)>(?<depName>.+)\\b"
+                "(?i)\\s*\\w*version=[\"']?(?<currentValue>.+)\\b[\"']?\\s+#+\\s*renovate:\s*(?<datasource>.+)>(?<depName>.+)\\b"
             ]
         }
     ]
