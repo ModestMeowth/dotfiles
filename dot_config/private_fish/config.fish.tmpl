@@ -21,7 +21,7 @@ if status is-interactive
 
     if type -q keychain
         if test -f {{ .chezmoi.homeDir }}/.ssh/github
-            keychain -q --nogui --host {{ .chezmoi.fqdnHostname }} github
+            #            keychain -q --nogui --host {{ .chezmoi.fqdnHostname }} github
             source {{ .chezmoi.homeDir }}/.keychain/{{ .chezmoi.fqdnHostname }}-fish
         end 
     end

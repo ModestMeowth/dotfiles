@@ -2,6 +2,7 @@
 
 {{- $headless := false -}}
 {{- $agekey := false -}}
+{{- $isWSL := false -}}
 
 {{- $hostname := .chezmoi.hostname -}}
 
@@ -21,6 +22,10 @@
 {{-   $agekey = promptBool "agekey" -}}
 {{- end -}}
 
+{{- if (.chezmoi.kernel.osrelease | lower | contains "wsl") }}
+{{-   $isWSL = true -}}
+{{- end -}}
+
 {{- if $interactive -}}
 {{-   writeToStdout "💡 Tip: you can re-enter your data with `chezmoi init --data=false`.\n" -}}
 {{- end -}}
@@ -28,6 +33,7 @@
 data:
   headless: {{ $headless }}
   agekey: {{ $agekey }}
+  isWSL: {{ $isWSL }}
 format: yaml
 encryption: age
 {{- if $agekey }}
