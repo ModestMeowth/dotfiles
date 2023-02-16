@@ -2,27 +2,27 @@ for file in $__fish_config_dir/custom.d/*.fish
     source $file
 end
 
+if type -q starship
+    starship init fish | source
+end
+
+if type -q thefuck
+    thefuck --alias | source
+end
+
+if type -q zoxide
+    zoxide init fish | source
+end
+
+if type -q direnv
+    direnv hook fish | source
+end
+
 if status is-interactive
-    if type -q starship
-        starship init fish | source
-    end
-
-    if type -q thefuck
-        thefuck --alias | source
-    end
-
-    if type -q zoxide
-        zoxide init fish | source
-    end
-
-    if type -q direnv
-        direnv hook fish | source
-    end
-
     if type -q keychain
         if test -f {{ .chezmoi.homeDir }}/.ssh/github
             keychain -q --nogui --host {{ .chezmoi.fqdnHostname }} github
             source {{ .chezmoi.homeDir }}/.keychain/{{ .chezmoi.fqdnHostname }}-fish
-        end 
+        end
     end
 end
