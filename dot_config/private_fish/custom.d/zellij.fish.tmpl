@@ -1,5 +1,11 @@
 if status is-interactive; and type -q zellij
 
+    {{- if .isWSL }}
+    if not set -q ZELLIJ; and test -d /mnt/wslg/runtime-dir/zellij/
+        rm -rf /mnt/wslg/runtime-dir/zellij/
+    end
+    {{- end }}
+
     set ZELLIJ_AUTO_ATTACH true 
     set ZELLIJ_AUTO_EXIT true
 
