@@ -3,6 +3,7 @@ function reload-abbrs --description 'clears and reloads abbreviations'
         abbr -e $abbr_name
     end
 
-    set -q MY_ABBRS_SET && set -e MY_ABBR_SET
+    set -q MY_ABBR_SET && set -e MY_ABBR_SET
+    printf "Reloading fish abbreviations\n"
     source $__fish_config_dir/custom.d/abbrs.fish
 end
