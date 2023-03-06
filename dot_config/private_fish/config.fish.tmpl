@@ -1,7 +1,8 @@
-{{- if .isWSL }}
+{{ if .isWSL -}}
 # WSL sets mtu too low for tailscale, set to 1500
 sudo ip link set dev eth0 mtu 1500
 {{- end }}
+
 for file in $__fish_config_dir/custom.d/*.fish
     source $file
 end
