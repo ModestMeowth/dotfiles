@@ -1,5 +1,5 @@
-#if not set -q MY_ABBR_SET
-#    set -U MY_ABBR_SET true
+if not set -q MY_ABBR_SET
+    set -U MY_ABBR_SET true
 
     if type -q apt
     {{- if ne .chezmoi.username "root" }}
@@ -91,6 +91,13 @@
         abbr la 'ls -1Ah'
     end
 
+    if type -q tailscale
+        abbr ts 'tailscale'
+        abbr tss 'tailscale status'
+        abbr tsp 'tailscale ping'
+        abbr tsn 'tailscale netcheck'
+    end
+
     abbr cpr 'cp -rf'
     abbr rmr 'rm -rf'
     abbr md 'mkdir -p'
@@ -98,4 +105,4 @@
 
     abbr -a L --position anywhere --set-cursor "% | less"
     abbr -a !! --position anywhere --function last_history_item
-#end
+end
