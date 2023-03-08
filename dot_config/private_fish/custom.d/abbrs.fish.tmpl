@@ -98,6 +98,11 @@ if not set -q MY_ABBR_SET
         abbr tsn 'tailscale netcheck'
     end
 
+    if type -q virsh
+        abbr vm 'virsh -c qemu:///system'
+        abbr vme 'virsh -c qemu:///system edit'
+    end
+
     abbr cpr 'cp -rf'
     abbr rmr 'rm -rf'
     abbr md 'mkdir -p'
