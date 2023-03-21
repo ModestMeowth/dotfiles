@@ -8,7 +8,7 @@ if [ $(command -v aqua) ]; then
     aqua update-aqua v1.33.0
 else
     printf "installing aqua\n"
-    curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.0.2/aqua-installer | bash -s -- -v v1.38.0
+    curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.0.2/aqua-installer | bash -s -- -v v2.0.0
 fi
 
 # .config/aqua.yaml hash: {{ include "dot_config/aqua.yaml.tmpl" | sha256sum }}
