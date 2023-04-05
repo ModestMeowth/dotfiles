@@ -104,9 +104,10 @@ if not set -q MY_ABBR_SET
     end
 
     if type -q docker
+        abbr dp 'docker ps --format "table {{.Names}}\t{{.Networks}}\t{{.Status}}\t{{.Ports}}"'
         abbr dc 'docker compose'
         abbr dls 'docker compose ls'
-        abbr dcu 'docker compose up'
+        abbr dcu 'docker compose up -d'
         abbr dcd 'docker compose down'
         abbr dce 'docker compose exec'
         abbr dcl 'docker compose logs'
