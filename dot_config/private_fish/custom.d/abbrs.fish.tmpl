@@ -103,6 +103,15 @@ if not set -q MY_ABBR_SET
         abbr vme 'virsh -c qemu:///system edit'
     end
 
+    if type -q docker
+        abbr dc 'docker compose'
+        abbr dls 'docker compose ls'
+        abbr dcu 'docker compose up'
+        abbr dcd 'docker compose down'
+        abbr dce 'docker compose exec'
+        abbr dcl 'docker compose logs'
+    end
+
     abbr cpr 'cp -rf'
     abbr rmr 'rm -rf'
     abbr md 'mkdir -p'
