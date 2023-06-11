@@ -3,12 +3,12 @@
 
 set -eufo pipefail
 
-# renovate: depName=aquaproj/aqua datasource=github-releases
-current_aqua_version=v2.8.0
-
-if [ ! $(command -v aqua) ] || [ $(aqua -v | head -n1 | cut -d" " -f3 | sed "s/^/v/") != $current_aqua_version ]; then
-    printf "Installing / Upgrading Aqua\n"
-    curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.1.1/aqua-installer | bash -s -- -v $current_aqua_version
+if [ $(command -v aqua) ]; then
+    printf "Upgrading Aqua\n"
+    aqua update-aqua
+else
+    printf "Installing Aqua\n"
+    curl -sSfL https://raw.github.com/aquaproj/aqua-installer/v2.1.1/aqua-installer | bash -- -v v2.8.0
 fi
 
 # .config/aqua.yaml hash: {{ include "dot_config/aqua.yaml.tmpl" | sha256sum }}
