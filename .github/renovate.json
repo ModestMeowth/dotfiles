@@ -5,12 +5,4 @@
         "github>aquaproj/aqua-renovate-config:file#1.6.0(dot_config/aqua\\.ya?ml\\.tmpl)",
         "github>aquaproj/aqua-renovate-config:golang-go#1.6.0(dot_config/aqua\\.ya?ml\\.tmpl)"
     ],
-    "regexManagers": [
-        {
-            "fileMatch": ["\\.chezmoiscripts\\/.*install-aqua\\.sh\\.tmpl$"],
-            "matchStrings": [
-                "# renovate: depName=(?<depName>.*) datasource=(?<datasource>.*)\\n\\s*current_\\w+_version=(?<currentValue>.+)\\b"
-            ]
-        }
-    ]
 }
