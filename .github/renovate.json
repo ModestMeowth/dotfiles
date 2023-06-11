@@ -6,7 +6,7 @@
     ],
     "regexManagers": [
         {
-            "fileMatch": ["\\.chezmoiscripts\\/.+\\.sh\\.tmpl$"],
+            "fileMatch": ["\\.chezmoiscripts\\/.*install-aqua\\.sh\\.tmpl$"],
             "matchStrings": [
                 "# renovate: depName=(?<depName>.*) datasource=(?<datasource>.*)\\n\\s*current_\\w+_version=(?<currentValue>.+)\\b"
             ]
