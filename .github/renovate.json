@@ -5,6 +5,5 @@
         "github>aquaproj/aqua-renovate-config:installer-script#1.6.0(.chezmoiscripts/.*install-aqua\\.sh\\.tmpl)",
         "github>aquaproj/aqua-renovate-config:file#1.6.0(dot_config/aqua\\.ya?ml\\.tmpl)",
         "github>aquaproj/aqua-renovate-config:golang-go#1.6.0(dot_config/aqua\\.ya?ml\\.tmpl)",
-        "github>aquaproj/aqau-renovate-config:action#1.6.0"
     ]
 }
