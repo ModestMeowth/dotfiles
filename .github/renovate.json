@@ -2,8 +2,9 @@
     "$schema": "https://docs.renovate.com/renovate-schema.json",
     "extends": [
         "config:base",
-        "github>aquaproj/aqua-renovate-config:installer-script#1.5.2(.chezmoiscripts/.*install-aqua\\.sh\\.tmpl)",
-        "github>aquaproj/aqua-renovate-config:file#1.5.2(dot_config/aqua\\.yaml\\.tmpl)",
-        "github>aquaproj/aqua-renovate-config:golang-go#1.5.2(dot_config/aqua\\.yaml\\.tmpl)"
+        "github>aquaproj/aqua-renovate-config:installer-script#1.6.0(.chezmoiscripts/.*install-aqua\\.sh\\.tmpl)",
+        "github>aquaproj/aqua-renovate-config:file#1.6.0(dot_config/aqua\\.ya?ml\\.tmpl)",
+        "github>aquaproj/aqua-renovate-config:golang-go#1.6.0(dot_config/aqua\\.ya?ml\\.tmpl)",
+        "github>aquaproj/aqau-renovate-config:action#1.6.0"
     ]
 }
