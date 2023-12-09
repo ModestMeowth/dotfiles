@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+if [[ ! -v $MY_ALIAS_SET || $MY_ALIAS_SET = false ]]; then
+    export MY_ALIAS_SET=true
+    
+    if [ $(command -v apt) ]; then
+        if [ $(command -v nala) ]; then
+        {{- if ne .chezmoi.username "root" }}
+            alias apti='sudo nala install'
+            alias aptr='sudo nala remove'
+            alias aptu='sudo nala update'
+            alias aptug='sudo sh -c "nala update && nala upgrade"'
+        else
+            alias apti='sudo apt install'
+            alias aptr='sudo apt remove'
+            alias aptu='sudo apt update'
+            alias aptug='sudo sh -c "apt update && apt upgrade"'
+        {{- else }}
+            alias apti='nala install'
+            alias aptr='nala remove'
+            alias aptu='nala update'
+            alias aptug='sh -c "nala update && nala upgrade"'
+        else
+            alias apti='apt install'
+            alias aptr='apt remove'
+            alias aptu='apt update'
+            alias aptug='sh -c "apt update && apt upgrade"'
+        {{- end }}
+        fi
+    fi
+
+    if [ $(command -v vim.nox) ]; then
+        {{- if ne .chezmoi.username "root" }}
+            alias vi='vim.nox'
+            alias vim='vim.nox'
+        {{- else }}
+            alias vi='vi'
+            alias vim='vi'
+        {{- end }}
+    fi
+
+    if [ $(command -v chezmoi) ]; then
+        alias c='chezmoi'
+        alias ca='chezmoi apply'
+        alias cu='chezmoi update'
+        alias ce='chezmoi edit'
+        alias cs='chezmoi status'
+        alias cc='chezmoi cd'
+        alias cg='chezmoi git'
+        alias cga='chezmoi git -- add'
+        alias cgaa='chezmoi git -- add -A'
+        alias cgs='chezmoi git -- status'
+        alias cgc='chezmoi git -- commit'
+        alias cgcm='chezmoi git -- commit -m'
+        alias cgp='chezmoi git -- push'
+        alias cgpl='chezmoi git -- pull'
+        alias cgd='chezmoi git -- diff'
+        alias cgds='chezmoi git -- diff --staged'
+        alias cgr='chezmoi git -- restore .'
+        alias cgrs='chezmoi git -- restore --staged .'
+    fi
+
+    if [ $(command -v thefuck) ]; then
+        alias fu='fuck'
+    fi
+
+    if [ $(command -v exa) ]; then
+        alias lsa='exa -lag --icons --sort=type'
+        alias ll='exa -l --icons --sort=type'
+        alias la='exa -lag --icons --sort=type'
+    else
+        alias lsa='ls -lah'
+        alias ll='ls -lh'
+        alias la='ls -lAh'
+    fi
+
+    if [ $(command -v tailscale) ]; then
+        alias ts='tailscale'
+        alias tss='tailscale status'
+        alias tsp='tailscale ping'
+        alias tsn='tailscale netcheck'
+    fi
+
+    if [ $(command -v virsh) ]; then
+        alias vm='virsh -c qemu:///system'
+        alias vme='virsh -c qemu:///system edit'
+    fi
+
+    if [ $(command -v docker) ]; then
+        alias dp='docker ps --format {{ "\"table {{.Names}}\\t{{.Networks}}\\t{{.Status}}\\t{{.Ports}}\""}}'
+        alias dc='docker compose'
+        alias dls='docker compose ls'
+        alias dcu='docker compose up -d'
+        alias dcd='docker compose down'
+        alias dcr='docker compose restart'
+        alias dce='docker compose exec'
+        alias dcl='docker compose logs'
+        alias dcp='docker compose pull'
+        alias dcb='docker compose build'
+    fi
+
+    alias cpr='cp -r'
+    alias rmr='rm -r'
+    alias md='mkdir -p'
+    alias rd='rmdir'
+
+fi

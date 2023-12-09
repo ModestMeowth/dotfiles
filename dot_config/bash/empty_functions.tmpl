@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+reload_aliases() {
+    unalias -a
+
+    unset MY_ALIAS_SET
+
+    . {{ .chezmoi.homeDir }}/.config/bash/aliases
+}

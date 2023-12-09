@@ -1,3 +1,9 @@
+{{- if .isWSL }}
+if string match -q "/mnt/c/Users/mm" $PWD
+    cd $HOME
+end
+{{- end }}
+
 for file in $__fish_config_dir/custom.d/*.fish
     source $file
 end

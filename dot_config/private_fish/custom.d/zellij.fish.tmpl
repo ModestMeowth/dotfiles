@@ -1,15 +1,10 @@
-if status is-interactive; and type -q zellij
-
-    {{- if .isWSL }}
-    #if not set -q ZELLIJ; and test -d /mnt/wslg/runtime-dir/zellij/
-    #        rm -rf /mnt/wslg/runtime-dir/zellij/
-    #end
-    {{- end }}
-
-    set ZELLIJ_AUTO_ATTACH true 
+if status is-interactive
+    
+    set ZELLIJ_AUTO_ATTACH true
     set ZELLIJ_AUTO_EXIT true
 
     if not string match -q "vscode" $TERM_PROGRAM
-        eval (zellij setup --generate-auto-start fish | string collect)
+        eval "$(zellij setup --generate-auto-start fish)"
     end
 end
+

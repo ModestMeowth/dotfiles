@@ -1,0 +1,32 @@
+{{- if .isWSL }}
+if [ "$PWD" == "/mnt/c/Users/mm" ]; then
+    cd "$HOME"
+fi
+{{- end }}
+
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+for conf in path environment aliases "functions" execute; do
+    if  test -f "{{ .chezmoi.homeDir }}/.config/bash/$conf"; then
+        . "{{ .chezmoi.homeDir }}/.config/bash/$conf"
+    fi
+done
+unset conf
+
+if test -d {{ .chezmoi.homeDir }}/.config/bash/custom.d; then
+    for conf in {{ .chezmoi.homeDir }}/.config/bash/custom.d/*; do
+        . "$conf"
+    done
+fi
+unset conf
