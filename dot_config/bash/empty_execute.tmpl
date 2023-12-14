@@ -12,3 +12,7 @@ fi
 if [ $(command -v starship) ]; then
     eval "$(starship init bash)"
 fi
+
+if [ $(command -v direnv) ]; then
+    eval "$(direnv hook bash)"
+fi
