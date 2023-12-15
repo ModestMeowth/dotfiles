@@ -81,8 +81,8 @@ if [[ ! -v $MY_ALIAS_SET || $MY_ALIAS_SET = false ]]; then
     fi
 
     if [ $(command -v virsh) ]; then
-        alias vm='virsh -c qemu:///system'
-        alias vme='virsh -c qemu:///system edit'
+        alias vm="virsh -c ${VM_HOST:-qemu:///system}"
+        alias vme="virsh -c ${VM_HOST:-qemu:///system edit}"
     fi
 
     if [ $(command -v docker) ]; then
