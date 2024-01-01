@@ -21,10 +21,10 @@ if not set -q MY_ABBR_SET
             abbr aptu 'nala update'
             abbr aptug 'nala update && nala upgrade'
         else
-            abbrapti 'apt install'
-            abbraptr 'apt remove'
-            abbraptu 'apt update'
-            abbraptug 'apt update && apt upgrade'
+            abbr apti 'apt install'
+            abbr aptr 'apt remove'
+            abbr aptu 'apt update'
+            abbr aptug 'apt update && apt upgrade'
     {{- end }}
     end
 
@@ -66,7 +66,7 @@ if not set -q MY_ABBR_SET
         abbr cgaa 'chezmoi git -- add -A'
         abbr cgs 'chezmoi git -- status'
         abbr cgc 'chezmoi git -- commit'
-        abbr cgcm 'chezmoi git -- commit -m "(chezmoi generate git-commit-message)"'
+        abbr cgcm 'chezmoi git -- commit -m "$(chezmoi generate git-commit-message)"'
         abbr cgp 'chezmoi git -- push'
         abbr cgd 'chezmoi git -- diff'
         abbr cgds 'chezmoi git -- diff --staged'
