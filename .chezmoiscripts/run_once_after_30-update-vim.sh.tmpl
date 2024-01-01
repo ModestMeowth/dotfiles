@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+{{ .vimrc hash {{ include "dot_vimrc.tmpl" | sha265sum }}
+vim +PlugUpdate +qall
