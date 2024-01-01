@@ -79,7 +79,12 @@ if not set -q MY_ABBR_SET
         abbr fu 'fuck'
     end
 
-    if type -q exa
+    if type -q eza
+        abbr lsa 'eza -lag --icons --sort=type'
+        abbr l 'eza -lag --icons --sort=type'
+        abbr ll 'eza -l --icons --sort=type'
+        abbr la 'eza -lag --icons --sort=type'
+    else if type -q exa
         abbr lsa 'exa -lag --icons --sort=type'
         abbr l 'exa -lag --icons --sort=type'
         abbr ll 'exa -l --icons --sort=type'

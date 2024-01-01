@@ -63,7 +63,11 @@ if [[ ! -v $MY_ALIAS_SET || $MY_ALIAS_SET = false ]]; then
         alias fu='fuck'
     fi
 
-    if [ $(command -v exa) ]; then
+    if [ $(command -v eza) ]; then
+        alias lsa='eza -lag --icons --sort=type'
+        alias ll='eza -l --icons --sort=type'
+        alias la='eza -lag --icons --sort=type'
+    elif [ $(command -v exa) ]; then
         alias lsa='exa -lag --icons --sort=type'
         alias ll='exa -l --icons --sort=type'
         alias la='exa -lag --icons --sort=type'

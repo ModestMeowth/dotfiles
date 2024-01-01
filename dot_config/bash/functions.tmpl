@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+reload_functions() {
+    unset -f reload_aliases reload_fuctions
+
+    . {{ .chezmoi.homeDir }}/.config/bash/functions
+}
+
 reload_aliases() {
     unalias -a
 

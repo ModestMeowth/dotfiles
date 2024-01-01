@@ -1,4 +1,4 @@
-fish_add_path {{ .chezmoi.homeDir }}/.local/share/aquaproj-aqua/bin
+# fish_add_path {{ .chezmoi.homeDir }}/.local/share/aquaproj-aqua/bin
 
 for i in .local/bin .bin bin .emacs.d/bin go/bin
     if test -d {{ .chezmoi.homeDir }}/$i

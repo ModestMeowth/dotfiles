@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-for dir in .local/bin .bin bin .emacs.d/bin go/bin .local/share/aquaproj-aqua/bin; do
+for dir in .local/bin .bin bin .emacs.d/bin go/bin; do
     if test -d "{{ .chezmoi.homeDir }}/$dir"; then
        PATH="{{ .chezmoi.homeDir }}/$dir:$PATH" 
     fi

@@ -21,7 +21,7 @@ if test -f "{{ .chezmoi.homeDir }}/.config/bash/hosts/{{ .chezmoi.hostname }}"; 
     . "{{ .chezmoi.homeDir }}/.config/bash/hosts/{{ .chezmoi.hostname }}"
 fi
 
-for conf in path environment aliases "functions" execute; do
+for conf in path environment functions aliases execute; do
     if  test -f "{{ .chezmoi.homeDir }}/.config/bash/$conf"; then
         . "{{ .chezmoi.homeDir }}/.config/bash/$conf"
     fi
