@@ -33,9 +33,10 @@
 
 [init]
 	defaultBranch = main
+
 [credential "https://github.com"]
 	helper = 
-	helper = !/home/mm/.local/share/aquaproj-aqua/bin/gh auth git-credential
+	helper = !{{ .chezmoi.homeDir }}/.nix-profile/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/home/mm/.local/share/aquaproj-aqua/bin/gh auth git-credential
+	helper = !{{ .chezmoi.homeDir }}/.nix-profile/bin/gh auth git-credential

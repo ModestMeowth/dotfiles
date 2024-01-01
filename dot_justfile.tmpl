@@ -2,7 +2,7 @@
     just --list
 
 nix-install *ARGS:
-    /bin/sh <(curl -L https://nixos.org/nix/install/) {{ ARGS }}
+    /bin/sh <(curl -L https://nixos.org/nix/install/) {{ "{{ ARGS }}" }}
 
 init:
     nix run 'nixpkgs#chezemoi' -- --init --apply ModestMeowth
