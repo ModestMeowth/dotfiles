@@ -34,6 +34,11 @@
                     pkgs = pkgsFor.x86_64-linux;
                     extraSpecialArgs = { inherit inputs outputs; };
                 };
+                "mm@pwnyboy" = lib.homeManagerConfiguration {
+                    modules = [ ./hosts/telescreen ];
+                    pkgs = pkgsFor.x86_64-linux;
+                    extraSpecialArgs = { inherit inputs outputs; };
+                };
             };
         };
 }
