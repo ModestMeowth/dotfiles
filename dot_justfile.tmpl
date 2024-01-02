@@ -2,10 +2,11 @@
     just --list
 
 nix-install *ARGS:
-    /bin/bash -c "<(curl -L https://nixos.org/nix/install/) {{ ARGS }}"
+    #!/usr/bin/env bash
+    sh <(curl -L https://nixos.org/nix/install/) {{ "{{ ARGS }}" }}
 
 home-manager-init:
-    nix run --experimental-features 'nixcommand flakes' 'nixpkgs#home-manager' -- switch
+    nix run 'nixpkgs#home-manager' -- switch
 
 chezmoi-init:
-    nix run --experimental-features 'nixcommand flakes' 'nixpkgs#chezmoi' -- switch
+    nix run 'nixcommand flakes' 'nixpkgs#chezmoi' -- switch

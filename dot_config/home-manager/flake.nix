@@ -26,6 +26,9 @@
                 telescreen = lib.nixosSystem {
                     system = "x86_64-linux";
                 };
+                pwnyboy = lib.nixosSystem {
+                    system = "x86_64-linux";
+                };
             };
 
             homeConfigurations = {
@@ -34,8 +37,9 @@
                     pkgs = pkgsFor.x86_64-linux;
                     extraSpecialArgs = { inherit inputs outputs; };
                 };
+
                 "mm@pwnyboy" = lib.homeManagerConfiguration {
-                    modules = [ ./hosts/telescreen ];
+                    modules = [ ./hosts/pwnyboy];
                     pkgs = pkgsFor.x86_64-linux;
                     extraSpecialArgs = { inherit inputs outputs; };
                 };

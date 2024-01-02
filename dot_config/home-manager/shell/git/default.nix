@@ -1,5 +1,6 @@
-{
-    programs.git = {
+{ pkgs, config, ... }: {
+  programs = {
+    git = {
         enable = true;
         userName = "Daniel Eberle";
         userEmail = "dan.eberle@protonmail.com";
@@ -10,7 +11,14 @@
         };
     };
 
-    programs.gh = {
+    gh = {
         enable = true;
+    };
+  };
+
+    home = {
+      packages = with pkgs; [
+        commitizen
+      ];
     };
 }
