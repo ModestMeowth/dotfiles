@@ -38,6 +38,10 @@ if [[ ! -v $MY_ALIAS_SET || $MY_ALIAS_SET = false ]]; then
         {{- end }}
     fi
 
+    if [ $(command -v home-manager) ]; then
+        alias hm='home-manager'
+    fi
+
     if [ $(command -v chezmoi) ]; then
         alias c='chezmoi'
         alias ca='chezmoi apply'
