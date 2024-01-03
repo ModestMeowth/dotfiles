@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+echo -e "\033[0;32m>>>>> Begin Setting Up Bash Completions <<<<<\033[0m"
+
+if [ ! -d {{ .chezmoi.homeDir }}/.config/bash/completions ]; then
+    mkdir -p {{ .chezmoi.homeDir }}/.config/bash/completions
+fi
+
+if [ $(command -v chezmoi) ]; then
+    echo "setting up chezmoi completions"
+    chezmoi completion bash --output={{ .chezmoi.homeDir }}/.config/bash/completions/chezmoi
+fi
+
+if [ $(command -v zellij) ]; then
+    echo "setting up zellij completions"
+    zellij setup --generate-completion bash > {{ .chezmoi.homeDir }}/.config/bash/completions/zellij
+fi
+
+if [ $(command -v just) ]; then
+    echo "setting up just completions"
+    just --completions bash > {{ .chezmoi.homeDir }}/.config/bash/completions/just
+fi
+
+echo -e "\033[0;32m>>>>> Finish Setting Bash Completions <<<<<\033[0m"

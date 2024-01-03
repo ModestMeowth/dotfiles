@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 if [[ ! -v $MY_ALIAS_SET || $MY_ALIAS_SET = false ]]; then
     export MY_ALIAS_SET=true
-    
+
     if [ $(command -v apt) ]; then
         if [ $(command -v nala) ]; then
         {{- if ne .chezmoi.username "root" }}
@@ -53,7 +53,11 @@ if [[ ! -v $MY_ALIAS_SET || $MY_ALIAS_SET = false ]]; then
         alias cga='chezmoi git -- add'
         alias cgaa='chezmoi git -- add -A'
         alias cgs='chezmoi git -- status'
-        alias cgc='chezmoi git -- commit -m "$(chezmoi generate git-commit-message)"'
+        if [ $(command -v cz) ]; then
+            alias cgc='chezmoi git cz commit'
+        else
+            alias cgc='chezmoi git -- commit'
+        fi
         alias cgp='chezmoi git -- push'
         alias cgd='chezmoi git -- diff'
         alias cgds='chezmoi git -- diff --staged'
@@ -66,6 +70,7 @@ if [[ ! -v $MY_ALIAS_SET || $MY_ALIAS_SET = false ]]; then
     fi
 
     if [ $(command -v eza) ]; then
+        alias ls='eza --icons --sort=type'
         alias lsa='eza -lag --icons --sort=type'
         alias ll='eza -l --icons --sort=type'
         alias la='eza -lag --icons --sort=type'

@@ -53,6 +53,8 @@
     home = {
       packages = with pkgs; [
         pre-commit
+        gitlint
+        shellcheck
         commitizen
       ];
     };

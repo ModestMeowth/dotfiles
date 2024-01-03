@@ -17,6 +17,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+for c in {{ .chezmoi.homeDir }}/.config/bash/completions/*; do
+    . "$c"
+done
+
 if test -f "{{ .chezmoi.homeDir }}/.config/bash/hosts/{{ .chezmoi.hostname }}"; then
     . "{{ .chezmoi.homeDir }}/.config/bash/hosts/{{ .chezmoi.hostname }}"
 fi
