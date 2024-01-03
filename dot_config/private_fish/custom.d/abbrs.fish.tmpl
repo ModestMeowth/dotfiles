@@ -1,8 +1,11 @@
 if not set -q MY_ABBR_SET
     set -l MY_ABBR_SET true
 
+	abbr ea 'edit-abbrs'
+
     if type -q home-manager
         abbr hm 'home-manager'
+	abbr hms 'home-manager switch'
     end
 
     if type -q apt
@@ -68,8 +71,7 @@ if not set -q MY_ABBR_SET
         abbr cs 'chezmoi status'
         abbr cc 'chezmoi cd'
         abbr cg 'chezmoi git'
-        abbr cga 'chezmoi git add'
-        abbr cgaa 'chezmoi git add -- -A'
+        abbr cga 'chezmoi git add -- -A'
         abbr cgc 'chezmoi git cz c'
         abbr cgs 'chezmoi git status'
         abbr cgp 'chezmoi git push'
@@ -84,6 +86,7 @@ if not set -q MY_ABBR_SET
     end
 
     if type -q eza
+	abbr ls 'eza --icons --sort=type'
         abbr lsa 'eza -lag --icons --sort=type'
         abbr l 'eza -lag --icons --sort=type'
         abbr ll 'eza -l --icons --sort=type'
@@ -108,8 +111,13 @@ if not set -q MY_ABBR_SET
     end
 
     if type -q virsh
-        abbr vm 'virsh -c qemu:///system'
-        abbr vme 'virsh -c qemu:///system edit'
+	{{- if ne .chezmoi.hostname "pwnyboy" }}
+	abbr vm 'virsh -c qemu+ssh://mm@pwnyboy/system'
+	abbr vme 'virsh -c qemu+ssh://mm@pwnyboy/system edit'
+	{{- else }}
+	abbr vm 'virsh -c qemu:///system'
+	abbr vme 'virsh -c qemu:///system edit'
+	{{- end }}
     end
 
     if type -q docker

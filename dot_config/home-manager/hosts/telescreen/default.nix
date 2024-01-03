@@ -5,10 +5,6 @@
 
         stateVersion = "23.11";
 
-        sessionVariables = {
-            EDITOR = "vim";
-        };
-
         packages = with pkgs; [
             just
             chezmoi
@@ -28,5 +24,6 @@
     imports = [
         ../../shell/git
         ../../shell/nix-direnv
+	../../apps/neovim
     ];
 }
