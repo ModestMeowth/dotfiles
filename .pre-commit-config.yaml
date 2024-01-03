@@ -1,9 +1,4 @@
 repos:
-  - repo: https://github.com/jorisroovers/gitlint
-    rev: v0.19.1
-    hooks:
-      - id: gitlint
-
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 3.0.0
     hooks:
@@ -22,12 +17,6 @@ repos:
       # - id: script-must-not-have-extension
       - id: shellcheck
       # - id: shfmt
-
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.13.0
-    hooks:
-      - id: commitizen
-      # - id: commitizen-branch
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
