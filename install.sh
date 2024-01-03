@@ -16,10 +16,12 @@ if [ ! "$(command -v nix)" ]; then
         exit 1
     fi
 
+fi
+
+if [ ! "$(command -v chezmoi)" ]; then
     printf "Installing dotfile from Github\n"
-    if [ ! "$(command -v chezmoi)" ]; then
-        nix-run --experimental-features nix-command flakes 'nixpkgs#chezmoi' -- init ModestMeowth
-    else
-        chezmoi init ModestMeowth
-    fi
+    nix-run --experimental-features nix-command flakes 'nixpkgs#chezmoi' -- init ModestMeowth
+else
+    printf "Installing dotfile from Github\n"
+    chezmoi init ModestMeowth
 fi
