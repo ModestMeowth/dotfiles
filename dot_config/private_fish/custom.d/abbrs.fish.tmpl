@@ -1,6 +1,10 @@
 if not set -q MY_ABBR_SET
     set -l MY_ABBR_SET true
 
+    if type -q home-manager
+        abbr hm 'home-manager'
+    end
+
     if type -q apt
     {{- if ne .chezmoi.username "root" }}
         if type -q nala
@@ -42,8 +46,10 @@ if not set -q MY_ABBR_SET
         abbr g 'git'
         abbr ga 'git add'
         abbr gaa 'git add --all'
+        if type -q cz
+            abbr gc 'cz c'
+        end
         abbr gc 'git commit'
-        abbr gcm 'git commit -m'
         abbr gs 'git status'
         abbr gp 'git push'
         abbr gpl 'git pull'
@@ -62,15 +68,15 @@ if not set -q MY_ABBR_SET
         abbr cs 'chezmoi status'
         abbr cc 'chezmoi cd'
         abbr cg 'chezmoi git'
-        abbr cga 'chezmoi git -- add'
-        abbr cgaa 'chezmoi git -- add -A'
-        abbr cgs 'chezmoi git -- status'
-        abbr cgc 'chezmoi git -- commit'
-        abbr cgp 'chezmoi git -- push'
-        abbr cgd 'chezmoi git -- diff'
-        abbr cgds 'chezmoi git -- diff --staged'
-        abbr cgr 'chezmoi git -- restore .'
-        abbr cgrs 'chezmoi git -- restore --staged .'
+        abbr cga 'chezmoi git add'
+        abbr cgaa 'chezmoi git add -- -A'
+        abbr cgc 'chezmoi git cz c'
+        abbr cgs 'chezmoi git status'
+        abbr cgp 'chezmoi gitpush'
+        abbr cgd 'chezmoi git diff'
+        abbr cgds 'chezmoi git diff -- --staged'
+        abbr cgr 'chezmoi git restore .'
+        abbr cgrs 'chezmoi git restore -- --staged .'
     end
 
     if type -q thefuck
