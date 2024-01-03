@@ -13,12 +13,11 @@ if [ ! "$(command -v nix)" ]; then
         printf "To install you must have curl or wget installed" >&2
         exit 1
     fi
-else
+
+    printf "Installing dotfile from Github\n"
     if [ ! "$(command -v chezmoi)" ]; then
-        printf "Installing dotfile from Github\n"
         nix-run --experimental-features nix-command flakes 'nixpkgs#chezmoi' -- init ModestMeowth
     else
-        printf "Installing dotfile from Github\n"
         chezmoi init ModestMeowth
     fi
 fi
