@@ -9,4 +9,3 @@ sh -c "$(curl -L https://raw.githubusercontent.com/ModestMeowth/dotfiles/main/in
 ```
 sh -c "$(curl -qO- https://raw.githubusercontent.com/ModestMeowth/dotfiles/main/install.sh)"
 ```
-
