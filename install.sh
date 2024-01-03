@@ -2,6 +2,8 @@
 
 set -e
 
+printf "Dotfiles Setup\n"
+
 if [ ! "$(command -v nix)" ]; then
     printf "Installing nix package manager\n"
 
