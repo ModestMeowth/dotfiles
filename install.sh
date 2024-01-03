@@ -5,7 +5,7 @@ set -e
 printf "Dotfiles Setup\n"
 
 if [ ! "$(command -v nix)" ]; then
-    printf "Installing nix package manager\n"
+    printf "Nix package manager: Installing\n"
 
     if [ "$(command -v curl)" ]; then
         sh -c "$(curl -L https://nixos.org/nix/install) --daemon"
@@ -15,13 +15,16 @@ if [ ! "$(command -v nix)" ]; then
         printf "To install you must have curl or wget installed" >&2
         exit 1
     fi
-
+else
+    printf "Nix package manager: FOUND\n\n"
 fi
 
 if [ ! "$(command -v chezmoi)" ]; then
-    printf "Installing dotfile from Github\n"
+    printf "Chezmoi: NOT FOUND\n"
+    printf "Chezmoi: Installing dotfiles using nix run\n"
     nix-run --experimental-features nix-command flakes 'nixpkgs#chezmoi' -- init ModestMeowth
 else
-    printf "Installing dotfile from Github\n"
+    printf "Chezmoi: FOUND\n"
+    printf "Chezmoi: Installing dotfiles\n"
     chezmoi init ModestMeowth
 fi
