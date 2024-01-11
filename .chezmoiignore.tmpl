@@ -1,0 +1,25 @@
+install.sh
+README.md
+flake.nix
+flake.lock
+nixos
+home
+
+{{ if ne .chezmoi.os "linux" }}
+.chezmoiscripts/linux/**
+{{ end }}
+
+{{ if ne .chezmoi.os "freebsd" }}
+.chezmoiscripts/freebsd/**
+{{ end }}
+
+{{ if ne .chezmoi.os "windows" }}
+.chezmoiscripts/windows/**
+Documents
+{{ else }}
+.vimrc
+{{ end }}
+
+{{ if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/darwin**
+{{ end }}

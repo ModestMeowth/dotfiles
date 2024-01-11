@@ -21,9 +21,19 @@
         home-manager.enable = true;
     };
 
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = [
+          "qemu+ssh://mm@pwnyboy/system"
+        ];
+        uris = [
+          "qemu+ssh://mm@pwnyboy/system"
+        ];
+      };
+    };
+
     imports = [
         ../../shell/git
         ../../shell/nix-direnv
-	../../apps/neovim
     ];
 }

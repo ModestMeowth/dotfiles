@@ -1,0 +1,21 @@
+{{- $headless := false -}}
+{{- $isWSL := false -}}
+{{- $hostname := .chezmoi.hostname -}}
+
+{{- if eq $hostname "pwnyboy" -}}
+{{-   $headless = true -}}
+{{- else -}}
+{{-   $headless = true -}}
+{{- end -}}
+
+{{- if (.chezmoi.kernel.osrelease | lower | contains "wsl") }}
+{{-   $isWSL = true -}}
+{{- end -}}
+
+[data]
+  headless = {{ $headless }}
+  isWSL = {{ $isWSL }}
+[edit]
+  command = "vi"
+[git]
+  autoAdd = true
