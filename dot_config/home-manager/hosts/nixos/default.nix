@@ -15,6 +15,10 @@
             zellij
             starship
         ];
+
+        sessionVariables = {
+          EDITOR = "vim";
+        };
     };
 
     programs = {
