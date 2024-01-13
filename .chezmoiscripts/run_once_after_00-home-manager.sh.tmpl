@@ -7,7 +7,7 @@ else
     if [ ! "$(command -v home-manager)" ]; then
         printf "Home Manager: NOT FOUND\n"
         printf "Home Manager: Installing\n"
-        nix run --experimental-features nix-command flakes 'nixpkgs#home-manager' switch
+        nix run --extra-experimental-features flakes 'nixpkgs#home-manager' switch
     else
         printf "Home Manager: FOUND\n"
         home-manager switch
