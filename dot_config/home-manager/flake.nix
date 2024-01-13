@@ -45,19 +45,19 @@
       homeConfigurations = {
 
         "mm@telescreen" = lib.homeManagerConfiguration {
-          modules = [ ./home/hosts/telescreen ];
+          modules = [ ./hosts/telescreen ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
 
         "mm@pwnyboy" = lib.homeManagerConfiguration {
-          modules = [ ./home/hosts/pwnyboy];
+          modules = [ ./hosts/pwnyboy];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
 
         "mm@nixos" = lib.homeManagerConfiguration {
-          modules = [ ./home/hosts/nixos ];
+          modules = [ ./hosts/nixos ];
           pkgs = pkgsFor.aarch64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
