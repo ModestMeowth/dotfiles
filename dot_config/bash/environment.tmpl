@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-if [ $(command -v vim.nox) ]; then
-    EDITOR=vim.nox
-elif [ $(command -v vim) ]; then
+if [ $(command -v vim) ]; then
     EDITOR=vim
 else
-    EDITOR=vi
+    EDITOR=nano
 fi
 
 #export AQUA_GLOBAL_CONFIG="{{ .chezmoi.homeDir }}/.config/aqua.yaml"

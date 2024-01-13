@@ -16,9 +16,6 @@
             starship
         ];
 
-        sessionVariables = {
-          EDITOR = "vim";
-        };
     };
 
     programs = {
