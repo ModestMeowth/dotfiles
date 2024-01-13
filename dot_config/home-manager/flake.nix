@@ -55,6 +55,12 @@
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
+
+        "mm@telescreen" = lib.homeManagerConfiguration {
+          modules = [ ./home/hosts/nixos ];
+          pkgs = pkgsFor.aarch64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
       };
     };
 }
