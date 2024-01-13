@@ -36,6 +36,10 @@
         pwnyboy = lib.nixosSystem {
           system = "x86_64-linux";
         };
+
+        nixos = lib.nixosSystem {
+            system = "aarch64-linux";
+          };
       };
 
       homeConfigurations = {
