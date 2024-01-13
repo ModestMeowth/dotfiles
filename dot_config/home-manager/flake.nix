@@ -56,7 +56,7 @@
           extraSpecialArgs = { inherit inputs outputs; };
         };
 
-        "mm@telescreen" = lib.homeManagerConfiguration {
+        "mm@nixos" = lib.homeManagerConfiguration {
           modules = [ ./home/hosts/nixos ];
           pkgs = pkgsFor.aarch64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
