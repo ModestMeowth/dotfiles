@@ -1,2 +1,5 @@
 @default:
     just --list
+hms:
+    nix flake update --flake {{ "{{ home_directory() }}" }}/.config/home-manager
+    home-manager switch

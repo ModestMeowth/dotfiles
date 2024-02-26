@@ -25,5 +25,6 @@
     imports = [
         ../../shell/git
         ../../shell/nix-direnv
+        ../../apps/neovim
     ];
 }

@@ -119,6 +119,11 @@ if not set -q MY_ABBR_SET
         abbr tsn 'tailscale netcheck'
     end
 
+    if type -q zoxide
+	abbr cd 'z'
+	abbr ci 'zi'
+    end
+
     if type -q virsh
 	{{- if ne .chezmoi.hostname "pwnyboy" }}
 	abbr vm 'virsh -c qemu+ssh://mm@pwnyboy/system'
