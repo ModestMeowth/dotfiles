@@ -25,7 +25,6 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "rust_analyzer",
             },
 
             handlers = {
@@ -53,6 +52,10 @@ return {
                             }
                         }
                     }
+                end,
+                ["nil_ls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.nil_ls.setup {}
                 end,
             }
         })

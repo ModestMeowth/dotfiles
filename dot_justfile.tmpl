@@ -1,5 +1,29 @@
 @default:
     just --list
-hms:
-    nix flake update --flake {{ "{{ home_directory() }}" }}/.config/home-manager
+
+update:
+    #!/usr/bin/env bash
+    if [ $(command -v chezmoi) ]; then
+        chezmoi apply
+    fi
+
+    nix flake update --flake {{ .chezmoi.homeDir }}/.config/home-manager
     home-manager switch
+
+clean:
+    #!/usr/bin/env bash
+    home-manager expire-generations "-7 days"
+
+{{- if eq .chezmoi.hostname "pwnyboy" -}}
+compose-update:
+    #!/usr/bin/env bash
+    for config in `docker compose ls | awk 'NR>1 {print $3}'`; do
+        printf "=====[ %s ]======" $( basename $(dirname $config) | sed 's/.*/\u&/' )
+        docker compose -f $config build
+        docker compose -f $config pull
+        docker compose -f $config up -d
+    done
+
+compose-clean:
+    docker image prune -f
+{{- end }}

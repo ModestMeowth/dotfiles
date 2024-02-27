@@ -7,6 +7,10 @@
         };
     };
 
+    home.packages = with pkgs; [
+        nil
+    ];
+
     xdg.configFile.nvim = {
         source = ./config;
         recursive = true;
