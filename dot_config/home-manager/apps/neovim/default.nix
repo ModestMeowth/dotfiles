@@ -8,7 +8,7 @@
     };
 
     home.packages = with pkgs; [
-        nil
+        ripgrep
     ];
 
     xdg.configFile.nvim = {

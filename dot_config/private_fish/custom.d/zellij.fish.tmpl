@@ -1,9 +1,0 @@
-if status is-interactive; and type -q zellij
-
-    set ZELLIJ_AUTO_ATTACH true
-    set ZELLIJ_AUTO_EXIT true
-
-    if not string match -q "vscode" $TERM_PROGRAM
-        eval "$(zellij setup --generate-auto-start fish)"
-    end
-end

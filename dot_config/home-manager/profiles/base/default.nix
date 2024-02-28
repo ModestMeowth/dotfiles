@@ -1,10 +1,5 @@
 { config, lib, pkgs, ... }: {
     home = {
-        username = "mm";
-        homeDirectory = "/home/mm";
-
-        stateVersion = "23.11";
-
         sessionVariables = {
             EDITOR = "vim";
         };
@@ -22,9 +17,10 @@
 
     programs = {
         home-manager.enable = true;
-        };
+    };
 
     imports = [
+        ../../shell/fish
         ../../shell/git
         ../../shell/nix-direnv
         ../../apps/neovim

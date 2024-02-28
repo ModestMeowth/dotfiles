@@ -14,7 +14,8 @@ clean:
     #!/usr/bin/env bash
     home-manager expire-generations "-7 days"
 
-{{ if eq .chezmoi.hostname "pwnyboy" }}
+{{- if eq .chezmoi.hostname "pwnyboy" }}
+
 compose-update:
     #!/usr/bin/env bash
     for config in `docker compose ls | awk 'NR>1 {print $3}'`; do
