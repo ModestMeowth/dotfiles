@@ -2,7 +2,6 @@ install.sh
 README.md
 flake.nix
 flake.lock
-.shellcheckrc
 .cz.toml
 
 {{ if ne .chezmoi.os "linux" }}
@@ -11,6 +10,7 @@ flake.lock
 
 {{ if ne .chezmoi.os "windows" }}
 .chezmoiscripts/windows/**
+dot_shellcheckrc
 Documents
 {{ else }}
 dot_config/home-manager
