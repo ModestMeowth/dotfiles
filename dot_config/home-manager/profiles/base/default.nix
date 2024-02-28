@@ -10,7 +10,6 @@
             eza
             fzf
             zoxide
-            zellij
             starship
         ];
     };
@@ -19,10 +18,14 @@
         home-manager.enable = true;
     };
 
+    
+
+
     imports = [
         ../../shell/fish
         ../../shell/git
         ../../shell/nix-direnv
+        ../../shell/zellij
         ../../apps/neovim
     ];
 }
