@@ -27,4 +27,8 @@ compose-update:
 
 compose-clean:
     docker image prune -f
+{{- else }}
+
+pwnyup:
+    tailscale ping -c 0 pwnyboy
 {{- end }}
