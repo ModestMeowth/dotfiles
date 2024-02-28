@@ -10,8 +10,9 @@ flake.lock
 
 {{ if ne .chezmoi.os "windows" }}
 .chezmoiscripts/windows/**
-dot_shellcheckrc
 Documents
 {{ else }}
-dot_config/home-manager
+.config/shellcheckrc
+.config/home-manager
+.config/nix
 {{ end }}
