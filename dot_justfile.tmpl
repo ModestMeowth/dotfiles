@@ -4,11 +4,13 @@
 update:
     #!/usr/bin/env bash
     if [ $(command -v chezmoi) ]; then
-        chezmoi apply
+        chezmoi update
     fi
 
+{{- if ne .chezmoi.hostname "windows" }}
     nix flake update --flake {{ .chezmoi.homeDir }}/.config/home-manager
     home-manager switch
+{{- end }}
 
 clean:
     #!/usr/bin/env bash
