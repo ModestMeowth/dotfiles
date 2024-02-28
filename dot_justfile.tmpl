@@ -7,7 +7,7 @@ update:
         chezmoi update
     fi
 
-{{- if ne .chezmoi.hostname "windows" }}
+{{- if ne .chezmoi.os "windows" }}
     nix flake update --flake {{ .chezmoi.homeDir }}/.config/home-manager
     home-manager switch
 {{- end }}
