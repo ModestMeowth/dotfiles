@@ -2,22 +2,18 @@
     just --list
 
 update:
-    #!/usr/bin/env bash
-    if [ $(command -v chezmoi) ]; then
-        chezmoi update
-    fi
+    chezmoi update
 
 {{- if ne .chezmoi.os "windows" }}
+
     nix flake update --flake {{ .chezmoi.homeDir }}/.config/home-manager
     home-manager switch
-{{- end }}
 
 clean:
-    #!/usr/bin/env bash
     home-manager expire-generations "-7 days"
+{{ end }}
 
 {{- if eq .chezmoi.hostname "pwnyboy" }}
-
 compose-update:
     #!/usr/bin/env bash
     for config in `docker compose ls | awk 'NR>1 {print $3}'`; do
