@@ -1,9 +1,0 @@
-#!/usr/bin/bash
-
-for dir in .local/bin .bin bin .emacs.d/bin go/bin; do
-    if test -d "{{ .chezmoi.homeDir }}/$dir"; then
-       PATH="{{ .chezmoi.homeDir }}/$dir:$PATH" 
-    fi
-done
-
-export PATH
