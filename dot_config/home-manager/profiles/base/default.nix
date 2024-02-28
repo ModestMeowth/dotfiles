@@ -18,7 +18,7 @@
         home-manager.enable = true;
     };
 
-    
+
 
 
     imports = [
