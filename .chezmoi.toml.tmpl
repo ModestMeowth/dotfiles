@@ -2,20 +2,24 @@
 {{- $isWSL := false -}}
 {{- $hostname := .chezmoi.hostname -}}
 
-{{- if eq $hostname "pwnyboy" -}}
-{{-   $headless = true -}}
-{{- else -}}
-{{-   $headless = true -}}
-{{- end -}}
+{{- if eq .chezmoi.os "linux" -}}
+    {{- if eq $hostname "pwnyboy" -}}
+        {{-   $headless = true -}}
+    {{- else -}}
+        {{-   $headless = true -}}
+    {{- end -}}
 
-{{- if (.chezmoi.kernel.osrelease | lower | contains "wsl") }}
-{{-   $isWSL = true -}}
+    {{- if (.chezmoi.kernel.osrelease | lower | contains "wsl") }}
+        {{-   $isWSL = true -}}
+    {{- end -}}
 {{- end -}}
 
 [data]
   headless = {{ $headless }}
   isWSL = {{ $isWSL }}
+
 [edit]
-  command = "vi"
+  command = "nvim"
+
 [git]
   autoAdd = true
