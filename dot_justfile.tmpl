@@ -17,7 +17,7 @@ clean:
 compose-update:
     #!/usr/bin/env bash
     for config in `docker compose ls | awk 'NR>1 {print $3}'`; do
-        printf "=====[ %s ]======" $( basename $(dirname $config) | sed 's/.*/\u&/' )
+        printf "=====[ %s ]======\n" $( basename $(dirname $config) | sed 's/.*/\u&/' )
         docker compose -f $config build
         docker compose -f $config pull
         docker compose -f $config up -d
