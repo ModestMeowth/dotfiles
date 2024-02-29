@@ -90,5 +90,5 @@ if status is-interactive
     if not string match -q "vscode" $TERM_PROGRAM
         eval "$(zellij setup --generate-auto-start fish)"
     end
-        
+
 end
