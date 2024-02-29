@@ -9,4 +9,3 @@ function bw {
 }
 
 Invoke-Expression (&starship init powershell)
-Invoke-Expression "$(direnv hook pwsh)"
