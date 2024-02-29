@@ -22,7 +22,6 @@
 
 
     imports = [
-        ../../shell/fish
         ../../shell/git
         ../../shell/nix-direnv
         ../../shell/zellij
