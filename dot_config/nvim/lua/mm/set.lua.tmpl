@@ -1,1 +1,4 @@
 {{ template "nvim/lua/mm/set.lua" }}
+{{- if eq .chezmoi.hostname "pwnyboy" }}
+vim.g["suda#nopass"] = 1
+{{- end }}
