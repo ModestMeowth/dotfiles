@@ -24,6 +24,7 @@ return {
         require("mason").setup({})
         require("mason-lspconfig").setup({
             ensure_installed = {
+                -- Programing
                 "lua_ls",
             },
 
@@ -52,10 +53,6 @@ return {
                             }
                         }
                     }
-                end,
-                ["nil_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.nil_ls.setup {}
                 end,
             }
         })
