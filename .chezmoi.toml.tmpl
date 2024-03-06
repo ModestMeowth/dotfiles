@@ -2,10 +2,8 @@
 {{- $isWSL := false -}}
 {{- $hostname := .chezmoi.hostname -}}
 
-{{- if eq .chezmoi.os "linux" -}}
+{{- if ne .chezmoi.os "windows" -}}
     {{- if eq $hostname "pwnyboy" -}}
-        {{-   $headless = true -}}
-    {{- else -}}
         {{-   $headless = true -}}
     {{- end -}}
 
@@ -15,11 +13,18 @@
 {{- end -}}
 
 [data]
-  headless = {{ $headless }}
-  isWSL = {{ $isWSL }}
-
-[edit]
-  command = "nvim"
+headless = {{ $headless }}
+isWSL = {{ $isWSL }}
 
 [git]
-  autoAdd = true
+autoAdd = true
+
+[edit]
+command = "nvim"
+
+{{- if eq .chezmoi.os "windows" }}
+    {{- if lookPath "pwsh.exe" }}
+[cd]
+command = "pwsh.exe"
+    {{ end }}
+{{ end -}}
