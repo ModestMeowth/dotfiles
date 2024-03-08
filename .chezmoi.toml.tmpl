@@ -1,20 +1,42 @@
 {{- $headless := false -}}
 {{- $isWSL := false -}}
 {{- $hostname := .chezmoi.hostname -}}
+{{- $pkgMgr := "apt" -}}
 
 {{- if ne .chezmoi.os "windows" -}}
+
     {{- if eq $hostname "pwnyboy" -}}
         {{-   $headless = true -}}
     {{- end -}}
 
-    {{- if (.chezmoi.kernel.osrelease | lower | contains "wsl") }}
-        {{-   $isWSL = true -}}
+    {{- if eq .chezmoi.os "linux" -}}
+
+        {{- if ( .chezmoi.kernel.osrelease | lower | contains "wsl" ) }}
+            {{-   $isWSL = true -}}
+        {{- end -}}
+
+        {{- if eq .chezmoi.osRelease.idLike "debian" -}}
+            {{- if lookPath "nala" -}}
+                {{- $pkgMgr = "nala" -}}
+            {{- end -}}
+        {{- end -}}
+
+        {{- if eq .chezmoi.osRelease.idLike "redhat" -}}
+            {{- $pkgMgr = "dnf" -}}
+        {{- end -}}
+
     {{- end -}}
+
+    {{- if eq .chezmoi.os "freebsd" -}}
+        {{- $pkgMgr = "pkg" -}}
+    {{- end }}
+
 {{- end -}}
 
 [data]
 headless = {{ $headless }}
 isWSL = {{ $isWSL }}
+pkgMgr = "{{ $pkgMgr }}"
 
 [git]
 autoAdd = true

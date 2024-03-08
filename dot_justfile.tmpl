@@ -1,17 +1,23 @@
 @default:
     just --list
-
+{{ if ne .chezmoi.os "windows" }}
 update:
-    chezmoi update
-
-{{- if ne .chezmoi.os "windows" }}
-
-    nix flake update --flake {{ .chezmoi.homeDir }}/.config/home-manager
-    home-manager switch
+    #!/usr/bin/env bash
+    if [ "$(command -v chezmoi)" ]; then
+        chezmoi update
+    fi
+    {{ if (or ( eq .chezmoi.osRelease.idLike "debian" ) ( eq .chezmoi.os "freebsd" )) }}
+    {{ .pkgMgr }} update
+    {{- end }}
+    {{ .pkgMgr }} upgrade
 
 clean:
     home-manager expire-generations "-7 days"
-{{ end }}
+{{- else }}
+
+update
+    chezmoi update
+{{- end }}
 
 {{- if eq .chezmoi.hostname "pwnyboy" }}
 compose-update:
