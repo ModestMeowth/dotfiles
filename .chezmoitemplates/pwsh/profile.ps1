@@ -2,6 +2,8 @@ $Env:DIRENV_CONFIG = "$Env:LOCALAPPDATA\direnv"
 $Env:XDG_CACHE_HOME = "$Env:USERPROFILE\.local\cache"
 $Env:XDG_DATA_HOME = "$Env:USERPROFILE\.local\share"
 
+$PSStyle.FileInfo.Directory = "`e[34m"
+
 Set-Alias -Name vi -Value nvim
 Set-Alias -Name vim -Value nvim
 
