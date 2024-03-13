@@ -1,2 +1,5 @@
 {{ template "pwsh/profile.ps1" }}
+
+$PSStyle.FileInfo.Directory = "`e[34m"
+
 Invoke-Expression "$(direnv hook pwsh)"
