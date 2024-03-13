@@ -11,6 +11,7 @@
             fzf
             zoxide
             starship
+            tmux
         ];
     };
 
@@ -24,7 +25,6 @@
     imports = [
         ../../shell/git
         ../../shell/nix-direnv
-        ../../shell/zellij
         ../../apps/mosh
         ../../apps/neovim
     ];

@@ -1,5 +1,5 @@
 default_mode "normal"
-keybinds clear_defaults=true {
+keybinds clear-defaults=true {
     normal {
         bind "Alt a" { SwitchToMode "tmux"; }
         bind "Alt z" { SwitchToMode "locked"; }

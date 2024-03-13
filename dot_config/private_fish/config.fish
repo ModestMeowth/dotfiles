@@ -84,11 +84,19 @@ if status is-interactive
         direnv hook fish | source
     end
 
-    set ZELLIJ_AUTO_ATTACH true
-    set ZELLIJ_AUTO_EXIT true
+    if type -q zellij
+        set ZELLIJ_AUTO_ATTACH true
+        set ZELLIJ_AUTO_EXIT true
 
-    if not string match -q "vscode" $TERM_PROGRAM
-        eval "$(zellij setup --generate-auto-start fish)"
+        if not string match -q "vscode" $TERM_PROGRAM
+            eval "$(zellij setup --generate-auto-start fish)"
+        end
+    else if type -q tmux
+        set TMUX_AUTO_ATTACH true
+        set TMUX_AUTO_EXIT true
+
+        if not string match -q "vscode" $TERM_PROGRAM
+            eval (cat $HOME/.config/fish/tmux-autostart.fish | string collect)
+        end
     end
-
 end
