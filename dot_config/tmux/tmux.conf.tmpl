@@ -7,7 +7,7 @@ bind -n M-l select-pane -R
 bind -n M-k select-pane -U
 bind -n M-j select-pane -D
 
-bind r source-file ~/.config/tmux/tmux.conf
+bind r source-file {{ .chezmoi.homeDir }}.config/tmux/tmux.conf
 
 set -g mouse on
 set-option -g allow-rename off
@@ -39,9 +39,10 @@ set -g pane-active-border-style "fg=#7aa2f7"
 set -g status-style "bg=#1a1b26"
 
 set -g status-left "#[fg=#1f2335,bg=#6441a5,bold] #{?client_prefix,󰠠 ,#[dim]󰤂 }#[fg=#ffffff,bg=#6441a5,bold,nodim]#S #[fg=brighwhite,bg=#15161e,nobold,noitalics,nounderscore,nodim]"
+
+
+set -g window-status-current-format "#[fg=#44dfaf,bg=#1f2335]    #[fg=#a9b1d6]#I #[bold,nodim]#W#[nobold,dim] #{?window_last_flag,,} "
+set -g window-status-format "#[fg=#c0caf5,bg=default,none,dim]    #I #W#[nobold,dim] #[fg=yellow,blink] #{?window_last_flag,󰁯 ,} "
+
 set -g status-right "#[fg=#a9b1d6,bg=#24283b]  %Y-%m-%d #[]%H:%M"
-
 set -g window-status-separator ""
-
-set -g window-status-current-format "#[fg=#44dfaf,bg=#1f2335]   #[fg=#a9b1d6]#I #[bold,nodim]#W#[nobold,dim] #P #{?window_last_flag,,} "
-set -g window-status-format "#[fg=#c0caf5,bg=default,none,dim]   #I #W#[nobold,dim] #P #[fg=yellow,blink] #{?window_last_flag,󰁯 ,}"

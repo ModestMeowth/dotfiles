@@ -1,7 +1,7 @@
 if not set -q TMUX
 
     if test "$TMUX_AUTO_ATTACH" = "true"
-        tmux new -As0
+        tmux new -As {{ .chezmoi.hostname }}
     else
         tmux
     end
