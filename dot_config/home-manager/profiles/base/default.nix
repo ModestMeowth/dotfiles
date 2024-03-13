@@ -19,9 +19,6 @@
         home-manager.enable = true;
     };
 
-
-
-
     imports = [
         ../../shell/git
         ../../shell/nix-direnv
