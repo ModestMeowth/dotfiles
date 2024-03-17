@@ -56,6 +56,7 @@
         gitlint
         shellcheck
         commitizen
+        lazygit
       ];
     };
 }
