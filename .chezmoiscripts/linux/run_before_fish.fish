@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 printf "====[ Fish Plugins\n"
- 
+
 if not type -q fisher
     printf ">>>>[ Install Fisher\n"
     curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
