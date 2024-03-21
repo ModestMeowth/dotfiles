@@ -1,3 +1,6 @@
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'dracula/tmux'
+
 bind-key C-b send-prefix
 bind | split-window -h
 bind - split-window -v
@@ -46,3 +49,4 @@ set -g window-status-format "#[fg=#c0caf5,bg=default,none,dim]    #I #W#[nobo
 
 set -g status-right "#[fg=#a9b1d6,bg=#24283b]  %Y-%m-%d #[]%H:%M"
 set -g window-status-separator ""
+run {{ .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm

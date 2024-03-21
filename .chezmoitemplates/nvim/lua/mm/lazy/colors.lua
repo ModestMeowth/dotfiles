@@ -24,4 +24,7 @@ return {
             })
         end
     },
+    {
+        "Mofiqul/dracula.nvim",
+    },
 }

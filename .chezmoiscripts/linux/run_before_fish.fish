@@ -1,15 +1,14 @@
 #!/usr/bin/env fish
 
 printf "====[ Fish Plugins\n"
-
+ 
 if not type -q fisher
-    printf ">>>>[ Fisher\n"
+    printf ">>>>[ Install Fisher\n"
     curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 end
 
-printf ">>>>\n"
+printf ">>>>[ Updating Fisher\n"
 fisher update
-printf ">>>>\n"
 
 printf "====[ Fish Completions\n"
 
@@ -23,7 +22,7 @@ if type -q chezmoi
 end
 
 if type -q zellij
-    printf ">>>>[ Zellij ]\n"
+    printf ">>>>[ Zellij\n"
     zellij setup --generate-completion fish > "$__fish_config_dir/completions/chezmoi.fish"
 end
 
