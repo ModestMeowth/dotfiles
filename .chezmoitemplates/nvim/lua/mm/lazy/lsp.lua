@@ -24,7 +24,6 @@ return {
         require("mason").setup({})
         require("mason-lspconfig").setup({
             ensure_installed = {
-                -- Programing
                 "lua_ls",
             },
 
@@ -38,7 +37,7 @@ return {
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
-                        capabilities = capabilites,
+                        capabilities = capabilities,
                         settings = {
                             Lua = {
                                 diagnostics = {
