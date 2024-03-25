@@ -85,18 +85,22 @@ if status is-interactive
     end
 
     if type -q zellij
-        set ZELLIJ_AUTO_ATTACH true
-        set ZELLIJ_AUTO_EXIT true
-
-        if not string match -q "vscode" $TERM_PROGRAM
-            eval "$(zellij setup --generate-auto-start fish)"
+        if set -q TILIX_ID; or string match -q "vscode" $TERM_PROGRAM
+            set ZELLIJ_AUTO_ATTACH false 
+            set ZELLIJ_AUTO_EXIT false
+        else
+            set ZELLIJ_AUTO_ATTACH true
+            set ZELLIJ_AUTO_EXIT true
         end
+        eval (zellij setup --generate-auto-start fish | string collect)
     else if type -q tmux
-        set TMUX_AUTO_ATTACH true
-        set TMUX_AUTO_EXIT true
-
-        if not string match -q "vscode" $TERM_PROGRAM
-            eval (cat $HOME/.config/fish/tmux-autostart.fish | string collect)
+        if set -q TILIX_ID; or string match -q "vscode" $TERM_PROGRAM
+            set TMUX_AUTO_ATTACH false
+            set TMUX_AUTO_EXIT false
+        else
+            set TMUX_AUTO_ATTACH true
+            set TMUX_AUTO_EXIT true
         end
+        eval (cat $HOME/.config/fish/tmux-autostart.fish | string collect)
     end
 end

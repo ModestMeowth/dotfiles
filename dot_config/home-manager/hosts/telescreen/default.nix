@@ -8,5 +8,6 @@
 
     imports = [
         ../../profiles/base
+        ../../shell/bitwarden
     ];
 }
