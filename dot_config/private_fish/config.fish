@@ -86,7 +86,7 @@ if status is-interactive
 
     if type -q zellij
         if set -q TILIX_ID; or string match -q "vscode" $TERM_PROGRAM
-            set ZELLIJ_AUTO_ATTACH false 
+            set ZELLIJ_AUTO_ATTACH false
             set ZELLIJ_AUTO_EXIT false
         else
             set ZELLIJ_AUTO_ATTACH true
