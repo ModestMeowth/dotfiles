@@ -15,14 +15,18 @@
             {{-   $isWSL = true -}}
         {{- end -}}
 
-        {{- if eq .chezmoi.osRelease.idLike "debian" -}}
-            {{- if lookPath "nala" -}}
-                {{- $pkgMgr = "nala" -}}
+        {{- if hasKey .chezmoi.osRelease "idLike" -}}
+            {{- if eq .chezmoi.osRelease.idLike "debian" -}}
+                {{- if lookPath "nala" -}}
+                    {{- $pkgMgr = "nala" -}}
+                {{- end -}}
             {{- end -}}
-        {{- end -}}
 
-        {{- if eq .chezmoi.osRelease.idLike "redhat" -}}
-            {{- $pkgMgr = "dnf" -}}
+            {{- if eq .chezmoi.osRelease.idLike "redhat" -}}
+                {{- $pkgMgr = "dnf" -}}
+            {{- end -}}
+        {{- else -}}
+            {{- $pkgMgr = nil -}}
         {{- end -}}
 
     {{- end -}}
