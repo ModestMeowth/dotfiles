@@ -1,11 +1,16 @@
 # :house: DOTFILES managed by CHEZMOI
 ## :wrench: INSTALLATION
 
-### via curl
+### NixOs
+nix run --experimental-features nix-command flakes 'nixpkg#chezmoi' -- init --apply ModestMeowth
+
+### Any OS with Nix Support
+
+#### via curl
 ``` sh
 sh -c "$(curl -L https://raw.githubusercontent.com/ModestMeowth/dotfiles/main/install.sh)"
 ```
-### via wget
+#### via wget
 ```
 sh -c "$(curl -qO- https://raw.githubusercontent.com/ModestMeowth/dotfiles/main/install.sh)"
 ```
