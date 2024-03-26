@@ -6,7 +6,7 @@
 nix run --experimental-features nix-command flakes 'nixpkg#chezmoi' -- init --apply ModestMeowth
 ```
 
-### Any OS with Nix Support
+### Any OS with Nix Support (will install nix standalone)
 
 #### via curl
 ``` sh
