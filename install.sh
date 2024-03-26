@@ -22,7 +22,7 @@ fi
 if [ ! "$(command -v chezmoi)" ]; then
     printf "Chezmoi: NOT FOUND\n"
     printf "Chezmoi: Installing dotfiles using nix run\n"
-    nix run --experimental-features nix-command flakes 'nixpkgs#chezmoi' init ModestMeowth
+    nix run --extra-experimental-features nix-command flakes 'nixpkgs#chezmoi' init ModestMeowth
 else
     printf "Chezmoi: FOUND\n"
     printf "Chezmoi: Installing dotfiles\n"
