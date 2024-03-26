@@ -26,7 +26,7 @@
                 {{- $pkgMgr = "dnf" -}}
             {{- end -}}
         {{- else -}}
-            {{- if .chezmoi.osRelease.id "nixos" -}}
+            {{- if eq .chezmoi.osRelease.id "nixos" -}}
                 {{- $pkgMgr = "nix" -}}
             {{- end -}}
         {{- end -}}
