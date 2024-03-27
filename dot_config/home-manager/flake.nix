@@ -50,6 +50,12 @@
           extraSpecialArgs = { inherit inputs outputs; };
         };
 
+        "mm@videodrome" = lib.homeManagerConfiguration {
+          modules = [ ./hosts/telescreen ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+
         "mm@pwnyboy" = lib.homeManagerConfiguration {
           modules = [ ./hosts/pwnyboy];
           pkgs = pkgsFor.x86_64-linux;
@@ -57,9 +63,8 @@
         };
 
         "mm@nixos" = lib.homeManagerConfiguration {
-          modules = [ ./hosts/telescreen ];
-          pkgs = pkgsFor.x86_64-linux;
-#          pkgs = pkgsFor.aarch64-linux;
+          modules = [ ./hosts/nixos];
+          pkgs = pkgsFor.aarch64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
       };
