@@ -11,7 +11,7 @@
             fzf
             zoxide
             starship
-            tmux
+            zellij
         ];
     };
 

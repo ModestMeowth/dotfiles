@@ -4,9 +4,11 @@ if string match -q "/mnt/c/Users/$USER" "$PWD"
     cd "$HOME"
 end
 
+{{- if ne .chezmoi.osRelease.id "nixos" }}
 if type -q nix
     set -gx LOCALE_ARCHIVE /usr/lib/locale/locale-archive
 end
+{{- end }}
 
 if status is-interactive
     set -gx EDITOR vi
@@ -93,14 +95,5 @@ if status is-interactive
             set ZELLIJ_AUTO_EXIT true
         end
         eval (zellij setup --generate-auto-start fish | string collect)
-    else if type -q tmux
-        if set -q TILIX_ID; or string match -q "vscode" $TERM_PROGRAM
-            set TMUX_AUTO_ATTACH false
-            set TMUX_AUTO_EXIT false
-        else
-            set TMUX_AUTO_ATTACH true
-            set TMUX_AUTO_EXIT true
-        end
-        eval (cat $HOME/.config/fish/tmux-autostart.fish | string collect)
     end
 end
