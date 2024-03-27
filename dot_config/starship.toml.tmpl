@@ -89,17 +89,29 @@ $container\
 $shell\
 $character"""
 
+[character]
+error_symbol = "[λ](bold #ff5555)"
+success_symbol = "[λ](bold #50fa7b)"
+
+[cmd_duration]
+style = "bold #f1fa8c"
+
+[directory]
+style = "bold #50fa7b"
+
 [hostname]
+style = "bold #ff5555"
 ssh_only = false
 
 [os]
 disabled = false
 
-[shell]
-disabled = false
-fish_indicator = '󰈺'
-powershell_indicator = ''
-style = "cyan bold"
+[git_branch]
+style = "bold #ff79c6"
+
+[git_status]
+style = "bold #ff5555"
 
 [username]
+style_user = "bold #8be9fd"
 show_always = true
