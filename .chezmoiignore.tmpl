@@ -19,3 +19,12 @@ AppData
 .config/fish
 .config/tmux
 {{ end }}
+
+{{ if eq .chezmoi.hostname "pwnyboy" }}
+# Don't install tons of dev plugins on the server
+.config/nvim/lua/mm/lazy/lsp.lua
+.config/nvim/lua/mm/lazy/snippets.lua
+.config/nvim/lua/mm/lazy/neotest.lua
+.config/nvim/lua/mm/lazy/neogen.lua
+.config/nvim/lua/mm/lazy/neogit.lua
+{{ end }}
