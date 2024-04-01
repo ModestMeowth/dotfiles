@@ -1,4 +1,8 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs = {
     git = {
       enable = true;
@@ -36,27 +40,26 @@
             changed = "green";
             untracked = "cyan";
           };
-
         };
       };
     };
 
     gh = {
-        enable = true;
+      enable = true;
 
-        settings = {
-          editor = "vim.nox";
-        };
+      settings = {
+        editor = "vim.nox";
+      };
     };
   };
 
-    home = {
-      packages = with pkgs; [
-        pre-commit
-        gitlint
-        shellcheck
-        commitizen
-        lazygit
-      ];
-    };
+  home = {
+    packages = with pkgs; [
+      pre-commit
+      gitlint
+      shellcheck
+      commitizen
+      lazygit
+    ];
+  };
 }

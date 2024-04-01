@@ -1,5 +1,10 @@
-{ config, lib, pkgs, ...}: {
-    home.packages = with pkgs; [
-        bitwarden-cli
-    ];
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [
+    bitwarden-cli
+  ];
 }

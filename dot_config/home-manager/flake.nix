@@ -10,7 +10,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
     inherit (self) outputs;
 
     lib = nixpkgs.lib // home-manager.lib;
@@ -22,51 +27,58 @@
 
     forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
 
-    pkgsFor = lib.genAttrs systems (system: import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    }); in {
+    pkgsFor = lib.genAttrs systems (system:
+      import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      });
+  in {
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
-      nixosConfigurations = {
-
-        telescreen = lib.nixosSystem {
-          system = "x86_64-linux";
-        };
-
-        pwnyboy = lib.nixosSystem {
-          system = "x86_64-linux";
-        };
-
-        nixos = lib.nixosSystem {
-            system = "aarch64-linux";
-          };
+    nixosConfigurations = {
+      telescreen = lib.nixosSystem {
+        system = "x86_64-linux";
       };
 
-      homeConfigurations = {
+      pwnyboy = lib.nixosSystem {
+        system = "x86_64-linux";
+      };
 
-        "mm@telescreen" = lib.homeManagerConfiguration {
-          modules = [ ./hosts/telescreen ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-
-        "mm@videodrome" = lib.homeManagerConfiguration {
-          modules = [ ./hosts/telescreen ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-
-        "mm@pwnyboy" = lib.homeManagerConfiguration {
-          modules = [ ./hosts/pwnyboy];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-
-        "mm@nixos" = lib.homeManagerConfiguration {
-          modules = [ ./hosts/nixos];
-          pkgs = pkgsFor.aarch64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
+      nixos = lib.nixosSystem {
+        system = "aarch64-linux";
       };
     };
+
+    homeConfigurations = {
+      "mm@peepers" = lib.homeManagerConfiguration {
+        modules = [./hosts/peepers];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
+
+      "mm@telescreen" = lib.homeManagerConfiguration {
+        modules = [./hosts/telescreen];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
+
+      "mm@videodrome" = lib.homeManagerConfiguration {
+        modules = [./hosts/telescreen];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
+
+      "mm@pwnyboy" = lib.homeManagerConfiguration {
+        modules = [./hosts/pwnyboy];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
+
+      "mm@nixos" = lib.homeManagerConfiguration {
+        modules = [./hosts/nixos];
+        pkgs = pkgsFor.aarch64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
+    };
+  };
 }

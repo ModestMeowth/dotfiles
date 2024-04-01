@@ -1,12 +1,16 @@
-{ pkgs, config, ...}: {
-    home = {
-        username = "mm";
-        homeDirectory = "/home/mm";
+{
+  pkgs,
+  config,
+  ...
+}: {
+  home = {
+    username = "mm";
+    homeDirectory = "/home/mm";
 
-        stateVersion = "23.11";
-    };
+    stateVersion = "23.11";
+  };
 
-    imports = [
-        ../../profiles/base
-    ];
+  imports = [
+    ../../profiles/base
+  ];
 }
