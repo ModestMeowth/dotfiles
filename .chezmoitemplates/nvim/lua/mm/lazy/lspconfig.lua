@@ -1,8 +1,6 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
@@ -10,51 +8,15 @@ return {
         "hrsh7th/nvim-cmp",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
-        "j-hui/fidget.nvim",
     },
 
     config = function()
+        local lspconfig = require("lspconfig")
         local cmp = require("cmp")
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend("force", {},
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
-
-        require("fidget").setup({})
-        require("mason").setup({})
-        require("mason-lspconfig").setup({
-            ensure_installed = {
-                "lua_ls",
-            },
-
-            handlers = {
-                function(server_name)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
-
-                ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                diagnostics = {
-                                    globals = {
-                                        "vim",
-                                        "it",
-                                        "describe",
-                                        "before_each",
-                                        "after_each",
-                                    },
-                                }
-                            }
-                        }
-                    }
-                end,
-            }
-        })
 
         local cmp_select = {
             behavior = cmp.SelectBehavior.Select,
@@ -91,5 +53,50 @@ return {
                 prefix = "",
             },
         })
+
+        lspconfig.bashls.setup {}
+        lspconfig.nil_ls.setup {}
+        lspconfig.vimls.setup {}
+        lspconfig.lua_ls.setup {
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {
+                            "vim",
+                            "it",
+                            "describe",
+                            "before_each",
+                            "after_each",
+                        },
+                    }
+                }
+            }
+        }
+
+        lspconfig.yamlls.setup {}
+        lspconfig.taplo.setup {}
+        lspconfig.jsonls.setup {}
+
+        lspconfig.dockerls.setup {}
+        lspconfig.ansiblels.setup {}
+        lspconfig.terraformls.setup {}
+
+        lspconfig.pyright.setup {}
+        lspconfig.gopls.setup {}
+        lspconfig.rust_analyzer.setup {}
+        lspconfig.tsserver.setup {}
+        lspconfig.clangd.setup {}
+        lspconfig.zls.setup {}
+
+        lspconfig.marksman.setup {}
+        lspconfig.ltex.setup {}
+
+        lspconfig.html.setup {}
+        lspconfig.cssls.setup {}
+        lspconfig.tailwindcss.setup {}
+        lspconfig.htmx.setup {}
+
+
     end
 }
