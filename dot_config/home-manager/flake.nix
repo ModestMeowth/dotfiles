@@ -50,8 +50,8 @@
     };
 
     homeConfigurations = {
-      "mm@peepers" = lib.homeManagerConfiguration {
-        modules = [./hosts/peepers];
+      "mm@think" = lib.homeManagerConfiguration {
+        modules = [./hosts/telescreen];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };

@@ -8,12 +8,14 @@ update:
     fi
     {{- if hasKey .chezmoi.osRelease "idLike" }}
         {{ if (or ( eq .chezmoi.osRelease.idLike "debian" ) ( eq .chezmoi.os "freebsd" )) }}
-    {{ .pkgMgr }} update
+    sudo {{ .pkgMgr }} update
         {{- end }}
-        {{- end }}
+    {{- end }}
 
     {{- if ne .chezmoi.osRelease.id "nixos" }}
-    {{ .pkgMgr }} upgrade
+    sudo {{ .pkgMgr }} upgrade
+    {{ else }}
+    sudo nixos-rebuild switch
     {{- end }}
 
 clean:
