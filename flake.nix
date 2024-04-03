@@ -30,7 +30,7 @@
       import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [(import overlays/systemd-wslfix.nix)];
+        overlays = [(import ./nixos/overlays/systemd-wslfix.nix)];
       };
     nixosSystem = system: hostname: username: let
       pkgs = genPkgs system;
@@ -42,8 +42,8 @@
           lanzaboote.nixosModules.lanzaboote
           wsl.nixosModules.wsl
           nix-db.nixosModules.nix-index
-          ./hosts/${hostname}
-          ./users/${username}
+          ./nixos/hosts/${hostname}
+          ./nixos/users/${username}
         ];
       };
   in {

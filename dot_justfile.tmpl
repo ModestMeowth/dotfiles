@@ -40,7 +40,7 @@ update:
 
         {{- else }}
 
-    sudo nixos-rebuild switch --flake {{ .chezmoi.homeDir }}/.config/nixos/#
+    sudo nixos-rebuild switch --flake {{ .chezmoi.sourceDir }}#
 
         {{- end }}
 
