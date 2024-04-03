@@ -11,18 +11,26 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    wsl = {
+        url = "github:nix-community/NixOS-WSL";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+
   };
 
   outputs = {
     nixpkgs,
     nix-db,
     lanzaboote,
+    wsl,
     ...
   }: let
     genPkgs = system:
       import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        overlays = [(import overlays/systemd-wslfix.nix)];
       };
     nixosSystem = system: hostname: username: let
       pkgs = genPkgs system;
@@ -32,6 +40,7 @@
         specialArgs = {inherit pkgs;};
         modules = [
           lanzaboote.nixosModules.lanzaboote
+          wsl.nixosModules.wsl
           nix-db.nixosModules.nix-index
           ./hosts/${hostname}
           ./users/${username}
@@ -44,6 +53,7 @@
 
     nixosConfigurations = {
       think = nixosSystem "x86_64-linux" "think" "mm";
+      videodrome = nixosSystem "x86_64-linux" "videodrome" "mm";
     };
   };
 }

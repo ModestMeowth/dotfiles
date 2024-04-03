@@ -5,6 +5,7 @@
     ./hardware.nix
     ../../modules
     ../../modules/hyprland.nix
+    ../../modules/secureboot.nix
   ];
 
   environment.systemPackages = with pkgs; [

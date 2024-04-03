@@ -3,14 +3,6 @@
   lib,
   ...
 }: {
-  security = {
-    sudo = {
-      enable = true;
-      wheelNeedsPassword = true;
-    };
-    doas.enable = false;
-  };
-
   environment.systemPackages = with pkgs; [
     sbctl
   ];
