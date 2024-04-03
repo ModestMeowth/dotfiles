@@ -1,6 +1,6 @@
 {
-    imports = [
-        ./hardware.nix
-        ../../modules/wsl.nix
-    ];
+  imports = [
+    ./hardware.nix
+    ../../modules/wsl.nix
+  ];
 }

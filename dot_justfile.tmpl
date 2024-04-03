@@ -7,7 +7,7 @@
 
 nix-lint:
     #!/usr/bin/env bash
-    cd "$(chezmoi source-path {{ .chezmoi.homeDir }}/.config/nixos)"
+    cd {{ .chezmoi.sourceDir }}
     nix fmt
 
     {{- end }}

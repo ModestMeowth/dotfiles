@@ -2,7 +2,7 @@
   imports = [
     ./display-manager.nix
     ./fonts.nix
-    ];
+  ];
 
   programs.hyprland = {
     enable = true;
