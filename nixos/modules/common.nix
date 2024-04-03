@@ -33,4 +33,8 @@
     };
     doas.enable = false;
   };
+
+  services = {
+    tailscale.enable = true;
+  };
 }
