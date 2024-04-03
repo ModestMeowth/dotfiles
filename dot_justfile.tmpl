@@ -1,32 +1,58 @@
 @default:
     just --list
-{{ if ne .chezmoi.os "windows" }}
+
+{{- if ne .chezmoi.os "windows" }}
+
+    {{- if eq .chezmoi.osRelease.id "nixos" }}
+
+nix-lint:
+    #!/usr/bin/env bash
+    cd "$(chezmoi source-path {{ .chezmoi.homeDir }}/.config/nixos)"
+    nix fmt
+
+    {{- end }}
+
+hm-clean:
+    home-manager expire-generations "-7 days"
+
+hm-lint:
+    #!/usr/bin/env bash
+    cd "$(chezmoi source-path {{ .chezmoi.homeDir }}/.config/home-manager)"
+    nix fmt
+
 update:
     #!/usr/bin/env bash
     if [ "$(command -v chezmoi)" ]; then
         chezmoi update
     fi
-    {{- if hasKey .chezmoi.osRelease "idLike" }}
-        {{ if (or ( eq .chezmoi.osRelease.idLike "debian" ) ( eq .chezmoi.os "freebsd" )) }}
+
+        {{- if hasKey .chezmoi.osRelease "idLike" }}
+            {{- if (or ( eq .chezmoi.osRelease.idLike "debian" ) ( eq .chezmoi.os "freebsd" )) }}
+
     sudo {{ .pkgMgr }} update
+
+            {{- end }}
         {{- end }}
-    {{- end }}
 
-    {{- if ne .chezmoi.osRelease.id "nixos" }}
+        {{- if ne .chezmoi.osRelease.id "nixos" }}
+
     sudo {{ .pkgMgr }} upgrade
-    {{ else }}
-    sudo nixos-rebuild switch
-    {{- end }}
 
-clean:
-    home-manager expire-generations "-7 days"
+        {{- else }}
+
+    sudo nixos-rebuild switch --flake {{ .chezmoi.homeDir }}/.config/nixos/#
+
+        {{- end }}
+
 {{- else }}
 
 update:
     chezmoi update
+
 {{- end }}
 
 {{- if eq .chezmoi.hostname "pwnyboy" }}
+
 compose-update:
     #!/usr/bin/env bash
     for config in `docker compose ls | awk 'NR>1 {print $3}'`; do
@@ -38,8 +64,10 @@ compose-update:
 
 compose-clean:
     docker image prune -f
+
 {{- else }}
 
 pwnyup:
     tailscale ping -c 0 pwnyboy
+
 {{- end }}

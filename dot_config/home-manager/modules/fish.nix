@@ -1,0 +1,8 @@
+{pkgs, ...}: {
+  home.packages = with pkgs.fishPlugins; [
+    autopair
+    fzf-fish
+    puffer
+    colored-man-pages
+  ];
+}

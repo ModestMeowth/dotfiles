@@ -1,0 +1,7 @@
+update *ARGS:
+    home-manager switch {{ ARGS }}
+
+lint:
+    #!/usr/bin/env bash
+    cd "$(chezmoi source-path $HOME/.config/home-manager)"
+    nix fmt

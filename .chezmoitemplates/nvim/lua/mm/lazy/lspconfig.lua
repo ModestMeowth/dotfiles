@@ -76,7 +76,11 @@ return {
 
         lspconfig.yamlls.setup {}
         lspconfig.taplo.setup {}
-        lspconfig.jsonls.setup {}
+        lspconfig.jsonls.setup {
+            cmd = {
+                "vscode-json-languageserver", "--stdio"
+            }
+        }
 
         lspconfig.dockerls.setup {}
         lspconfig.ansiblels.setup {}
@@ -92,8 +96,16 @@ return {
         lspconfig.marksman.setup {}
         lspconfig.ltex.setup {}
 
-        lspconfig.html.setup {}
-        lspconfig.cssls.setup {}
+        lspconfig.html.setup {
+            cmd = {
+                "html-languageserver", "--stdio"
+            }
+        }
+        lspconfig.cssls.setup {
+            cmd = {
+                "css-languageserver", "--stdio"
+            }
+        }
         lspconfig.tailwindcss.setup {}
         lspconfig.htmx.setup {}
 

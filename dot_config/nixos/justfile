@@ -1,0 +1,10 @@
+update *ARGS:
+    sudo nixos-rebuild switch --flake .# {{ ARGS }}
+
+list:
+    nixos-rebuild list-generations --flake .#
+
+lint:
+    #!/usr/bin/env bash
+    cd "$(chezmoi source-path $HOME/.config/nixos)"
+    nix fmt

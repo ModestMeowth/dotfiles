@@ -11,74 +11,35 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     home-manager,
     ...
   } @ inputs: let
-    inherit (self) outputs;
-
-    lib = nixpkgs.lib // home-manager.lib;
-
-    systems = [
-      "x86_64-linux"
-      "aarch64-linux"
-    ];
-
-    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-
-    pkgsFor = lib.genAttrs systems (system:
-      import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
+    homeConfig = system: hostname: username: let
+      specialArgs =
+        inputs
+        // {
+          inherit system hostname;
+        };
+    in
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {system = "${system}";};
+        modules = [
+          ./hosts/${hostname}/${username}.nix
+        ];
+        extraSpecialArgs = specialArgs;
+      };
   in {
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-
-    nixosConfigurations = {
-      telescreen = lib.nixosSystem {
-        system = "x86_64-linux";
-      };
-
-      pwnyboy = lib.nixosSystem {
-        system = "x86_64-linux";
-      };
-
-      nixos = lib.nixosSystem {
-        system = "aarch64-linux";
-      };
+    formatter = {
+      x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+      aarch64-linux = nixpkgs.legacyPackages.aarch64.alejandra;
     };
 
     homeConfigurations = {
-      "mm@think" = lib.homeManagerConfiguration {
-        modules = [./hosts/telescreen];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-      };
-
-      "mm@telescreen" = lib.homeManagerConfiguration {
-        modules = [./hosts/telescreen];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-      };
-
-      "mm@videodrome" = lib.homeManagerConfiguration {
-        modules = [./hosts/telescreen];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-      };
-
-      "mm@pwnyboy" = lib.homeManagerConfiguration {
-        modules = [./hosts/pwnyboy];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-      };
-
-      "mm@nixos" = lib.homeManagerConfiguration {
-        modules = [./hosts/nixos];
-        pkgs = pkgsFor.aarch64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-      };
+      "mm@think" = homeConfig "x86_64-linux" "think" "mm";
+      "mm@telescreen" = homeConfig "x86_64-linux" "telescreen" "mm";
+      "mm@videodrome" = homeConfig "x86_64-linux" "videodrome" "mm";
+      "mm@pwnyboy" = homeConfig "x86_64-linux" "pwnyboy" "mm";
     };
   };
 }
