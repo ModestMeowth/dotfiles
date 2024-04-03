@@ -32,9 +32,7 @@ AppData
 .config/nvim/lua/mm/lazy/neogit.lua
 {{ end }}
 
-{{ if .headless }}
-{{ if ne .chezmoi.os "windows" }}
+{{ if or .headless ( eq .chezmoi.os "windows" ) }}
 .config/hypr
 .config/foot
-{{ end }}
 {{ end }}
