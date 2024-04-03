@@ -1,3 +1,4 @@
+# Don't pollute home
 install.sh
 README.md
 flake.nix
@@ -35,4 +36,7 @@ AppData
 {{ if or .headless ( eq .chezmoi.os "windows" ) }}
 .config/hypr
 .config/foot
+    {{ if ne .chezmoi.os "windows" }}
+# Non-windows gui stuff
+    {{ end }}
 {{ end }}
