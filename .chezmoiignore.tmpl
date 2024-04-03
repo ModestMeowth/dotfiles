@@ -31,6 +31,8 @@ AppData
 {{ end }}
 
 {{ if .headless }}
+{{ if ne .chezmoi.os "windows" }}
 .config/hypr
 .config/foot
+{{ end }}
 {{ end }}
