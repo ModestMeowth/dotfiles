@@ -2,6 +2,7 @@
   imports = [
     ./common.nix
     ./networking.nix
+    ./firewall.nix
   ];
 
   i18n = {

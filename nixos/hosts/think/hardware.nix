@@ -2,18 +2,27 @@
   config,
   lib,
   modulesPath,
+  pkgs,
   ...
 }: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   hardware = {
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    opengl.enable = true;
+    opengl = {
+      enable = true;
+      extraPackages = with pkgs; [
+        amdvlk
+        rocmPackages.clr.icd
+      ];
+    };
   };
+
+  services.xserver.videoDrivers = ["amdgpu"];
 
   boot = {
     initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "sd_mod"];
-    initrd.kernelModules = [];
+    initrd.kernelModules = ["amdgpu"];
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
 

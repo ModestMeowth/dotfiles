@@ -4,8 +4,10 @@
   imports = [
     ./hardware.nix
     ../../modules
-    ../../modules/hyprland.nix
     ../../modules/secureboot.nix
+    ../../modules/gpu.nix
+    ../../modules/pipewire.nix
+    ../../modules/gnome.nix
   ];
 
   environment.systemPackages = with pkgs; [

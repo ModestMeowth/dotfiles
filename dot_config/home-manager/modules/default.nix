@@ -9,9 +9,11 @@
     stateVersion = "24.05";
 
     packages = with pkgs; [
+      bat
       just
       chezmoi
       eza
+      fd
       fzf
       zoxide
       starship
