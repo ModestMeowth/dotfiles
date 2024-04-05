@@ -11,9 +11,14 @@ end
 {{- end }}
 
 if status is-interactive
-    set -gx EDITOR vi
-    set -gx VISUAL vi
-
+    # Tailscale SSH is hardcoded to only send env vars SSH and TMUX
+    # work around to send ZELLIJ to prevent nesting
+    if set -q ZELLIJ
+        set -gx TMUX $ZELLIJ
+    end
+    if set -q SSH; and set -q TMUX
+        set -gx ZELLIJ $TMUX
+    end
     source "$__fish_config_dir/abbrs.fish"
     source "$__fish_config_dir/functions.fish"
 
