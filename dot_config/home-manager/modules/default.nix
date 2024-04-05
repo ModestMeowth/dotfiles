@@ -21,6 +21,7 @@
       zellij
       mosh
       bitwarden-cli
+      nmap
     ];
   };
 
