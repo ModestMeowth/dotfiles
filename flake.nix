@@ -16,6 +16,11 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -23,6 +28,7 @@
     nix-db,
     lanzaboote,
     wsl,
+    agenix,
     ...
   }: let
     genPkgs = system:
@@ -36,11 +42,12 @@
     in
       nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit pkgs;};
+        specialArgs = {inherit agenix pkgs system;};
         modules = [
           lanzaboote.nixosModules.lanzaboote
           wsl.nixosModules.wsl
           nix-db.nixosModules.nix-index
+          agenix.nixosModules.default
           ./nixos/hosts/${hostname}
           ./nixos/users/${username}
         ];
@@ -48,6 +55,7 @@
   in {
     formatter = {
       x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+      aarch64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
     };
 
     nixosConfigurations = {

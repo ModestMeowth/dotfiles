@@ -19,6 +19,8 @@
     pciutils
     git
     curl
+    age
+    direnv
   ];
 
   fonts = {

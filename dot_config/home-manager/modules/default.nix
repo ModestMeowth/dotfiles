@@ -9,9 +9,10 @@
     stateVersion = "24.05";
 
     packages = with pkgs; [
-      bat
-      just
       chezmoi
+      bat
+      htop
+      just
       eza
       fd
       fzf

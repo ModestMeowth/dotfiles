@@ -8,6 +8,7 @@
     ../../modules/gpu.nix
     ../../modules/pipewire.nix
     ../../modules/gnome.nix
+    ../../modules/ssh.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -15,4 +16,12 @@
     firefox-bin
     fontpreview
   ];
+
+  services = {
+    fwupd.enable = true;
+    openssh.listenAddresses = [
+      {addr = "100.91.249.96";}
+      {addr = "fd7a:115c:a1e0::2501:f960";}
+    ];
+  };
 }

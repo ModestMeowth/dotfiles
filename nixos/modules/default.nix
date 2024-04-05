@@ -3,6 +3,7 @@
     ./common.nix
     ./networking.nix
     ./firewall.nix
+    ./agenix.nix
   ];
 
   i18n = {
