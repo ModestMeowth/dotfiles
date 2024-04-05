@@ -22,5 +22,5 @@
     in
       pkgs.lib.splitString "\n" (builtins.readFile authorizedKeys);
   };
-  age.secrets.postgres_pass.file = /home/mm/secrets/postgres_pass.age;
+  age.secrets = {};
 }
