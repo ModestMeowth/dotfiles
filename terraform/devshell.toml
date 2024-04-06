@@ -4,3 +4,9 @@ package = "just"
 
 [[commands]]
 package = "terraform"
+
+[devshell]
+packages = [
+    "terraform-providers.vault",
+    "terraform-providers.minio",
+]

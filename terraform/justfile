@@ -1,0 +1,16 @@
+default:
+    just --list
+
+terraform +ARGS:
+    #!/usr/bin/env bash
+    set -a
+    source /run/agenix/terraform || true
+    set +a
+
+    terraform {{ ARGS }}
+
+plan *ARGS:
+    just terraform plan {{ ARGS }}
+
+apply *ARGS:
+    just terraform apply {{ ARGS }}

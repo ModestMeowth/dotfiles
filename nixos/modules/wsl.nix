@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{lib, pkgs, ...}: {
   system.stateVersion = "24.05";
 
   imports = [
@@ -13,6 +13,7 @@
     startMenuLaunchers = true;
   };
 
+  # patch fixes https://github.com/microsoft/WSL/issues/8879
   nixpkgs.overlays = [
     (final: prev:
       with final; {
@@ -27,4 +28,12 @@
   ];
 
   systemd.package = pkgs.systemd-wslfix;
+
+  # fixes ssh over tailscale
+  networking.interfaces.eth0.mtu = 1500;
+  # mtu change errors out sshd at boot time when bound only to tailscale
+  systemd.services.sshd = {
+      overrideStrategy = "asDropin";
+      unitConfig.After = lib.mkForce "tailscaled.service";
+  };
 }

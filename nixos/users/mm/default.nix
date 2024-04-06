@@ -22,5 +22,12 @@
     in
       pkgs.lib.splitString "\n" (builtins.readFile authorizedKeys);
   };
-  age.secrets = {};
+
+  age.secrets = {
+    terraform = {
+      file = ../../../secrets/terraform.age;
+      mode = "600";
+      owner = "mm";
+    };
+  };
 }
