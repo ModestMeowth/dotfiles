@@ -10,7 +10,10 @@ terraform +ARGS:
     terraform {{ ARGS }}
 
 plan *ARGS:
-    just terraform plan {{ ARGS }}
+    @just terraform plan {{ ARGS }}
 
 apply *ARGS:
-    just terraform apply {{ ARGS }}
+    @just terraform apply {{ ARGS }}
+
+init:
+   terraform init -backend-config=/run/agenix/minio 

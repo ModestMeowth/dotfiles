@@ -50,6 +50,11 @@
     fsType = "zfs";
   };
 
+  fileSystems."/home/mm" = {
+    device = "zroot/home/mm";
+    fsType = "zfs";
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/3ACB-5C91";
     fsType = "vfat";

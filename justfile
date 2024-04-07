@@ -1,6 +1,11 @@
 update:
     sudo nixos-rebuild --flake .# switch
 
+upgrade:
+    sudo -v
+    sudo nix flake update .
+    @just update
+
 generate *ARGS:
     #!/usr/bin/env bash
     cd ansible

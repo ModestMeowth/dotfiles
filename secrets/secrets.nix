@@ -20,4 +20,5 @@ let
   ];
 in {
   "terraform.age".publicKeys = user_keys ++ system_keys;
+  "minio.age".publicKeys = user_keys ++ system_keys;
 }

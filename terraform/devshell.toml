@@ -7,6 +7,7 @@ package = "terraform"
 
 [devshell]
 packages = [
-    "terraform-providers.vault",
     "terraform-providers.minio",
+    "terraform-providers.vault",
+    "terraform-providers.cloudflare",
 ]

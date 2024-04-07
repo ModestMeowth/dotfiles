@@ -8,6 +8,7 @@
   users.users.mm = {
     isNormalUser = true;
     uid = lib.mkForce 1001;
+    description = "Modest Meowth";
     shell = pkgs.fish;
     extraGroups = [
       "wheel"
@@ -26,6 +27,11 @@
   age.secrets = {
     terraform = {
       file = ../../../secrets/terraform.age;
+      mode = "600";
+      owner = "mm";
+    };
+    minio = {
+      file = ../../../secrets/minio.age;
       mode = "600";
       owner = "mm";
     };
