@@ -46,7 +46,7 @@
       groups = ["wheel"];
       commands = [
         {
-          command = "/run/current-system/ws/bin/ip link set dev eth0 mtu 1500";
+          command = "/run/current-system/sw/bin/ip link set dev eth0 mtu 1500";
           options = ["SETENV" "NOPASSWD"];
         }
       ];
