@@ -1,5 +1,10 @@
 set -g fish_greeting
 
+{{ if .isWSL }}
+# fix tailscale+WSL mtu issues
+sudo ip link set dev eth0 mtu 1500
+{{ end }}
+
 if string match -q "/mnt/c/Users/$USER" "$PWD"
     cd "$HOME"
 end

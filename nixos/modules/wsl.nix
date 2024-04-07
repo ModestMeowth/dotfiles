@@ -1,4 +1,8 @@
-{lib, pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   system.stateVersion = "24.05";
 
   imports = [
@@ -33,7 +37,19 @@
   networking.interfaces.eth0.mtu = 1500;
   # mtu change errors out sshd at boot time when bound only to tailscale
   systemd.services.sshd = {
-      overrideStrategy = "asDropin";
-      unitConfig.After = lib.mkForce "tailscaled.service";
+    overrideStrategy = "asDropin";
+    unitConfig.After = lib.mkForce "tailscaled.service";
   };
+  # allow wheel to fix mtu manually
+  security.sudo.extraRules = [
+    {
+      groups = ["wheel"];
+      commands = [
+        {
+          command = "/run/current-system/ws/bin/ip link set dev eth0 mtu 1500";
+          options = ["SETENV" "NOPASSWD"];
+        }
+      ];
+    }
+  ];
 }
