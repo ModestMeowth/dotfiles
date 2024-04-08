@@ -1,1 +1,4 @@
 /.direnv/
+galaxy_roles/**
+galaxy_collections/**
+.retry

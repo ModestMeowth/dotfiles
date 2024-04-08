@@ -17,6 +17,10 @@ if not set -q MY_ABBR_SET
         end
     end
 
+    if type -q mosh
+        abbr ssh 'mosh'
+    end
+
     if type -q git
         abbr g 'git'
         abbr ga 'git add -A'

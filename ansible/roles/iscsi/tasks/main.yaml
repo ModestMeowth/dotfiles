@@ -1,0 +1,55 @@
+- name: Is open-iscsi package installed
+  ansible.builtin.package:
+    name: "{{ iscsi_packages }}"
+    state: present
+
+- name: Set initiator nome
+  ansible.builtin.template:
+    src: initiatorname.iscsi.j2
+    owner: root
+    group: root
+    mode: '0600'
+    dest: /etc/iscsi/initiatorname.iscsi
+  notify: Restart iscsid
+
+- name: Configure iscsid
+  ansible.builtin.template:
+    src: iscsid.conf.j2
+    owner: root
+    group: root
+    mode: '0600'
+    dest: /etc/iscsi/iscsid.conf
+
+- name: Enable iscsid service
+  ansible.builtin.service:
+    name: iscsid
+    enabled: true
+
+- name: Run handlers if configuration has changed
+  ansible.builtin.meta: flush_handlers
+
+- name: Config_targets | discovering targets
+  community.general.open_iscsi:
+    discover: "{{ item.discover }}"
+    portal: "{{ item.portal }}"
+    show_nodes: true
+  register: discovery_targets
+  with_items: '{{ iscsi_targets }}'
+
+- name: Discovered targets
+  ansible.builtin.debug:
+    msg: "Discovered targets: {{ discovery_targets.results }}"
+
+- name: Config_targets | configuring targets
+  community.general.open_iscsi:
+    discover: "{{ item.discover }}"
+    login: "{{ item.login }}"
+    portal: "{{ item.portal }}"
+    target: "{{ item.target | default(omit) }}"
+    auto_portal_startup: true
+    node_auth: "{{ item.node_auth | default(omit) }}"
+    node_user: "{{ item.node_user | default(omit) }}"
+    node_pass: "{{ item.node_pass | default(omit) }}"
+    node_user_in: "{{ item.node_user_in | default(omit) }}"
+    node_pass_in: "{{ item.node_pass_in | default(omit) }}"
+  with_items: '{{ iscsi_targets }}'

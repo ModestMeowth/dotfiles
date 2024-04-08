@@ -1,0 +1,33 @@
+- name: Load Public Keys into nixos-config
+  hosts: localhost
+  tasks:
+    - name: Fetch Public Keys from GitHub
+      ansible.builtin.get_url:
+        url: https://github.com/ModestMeowth.keys
+        dest: /tmp/pubkeys
+        mode: '0600'
+      changed_when: false
+      tags:
+        - gen_auth_keys
+
+    - name: Load Keys
+      ansible.builtin.slurp:
+        src: /tmp/pubkeys
+      tags:
+        - gen_auth_keys
+
+    - name: Get sha256 Hash
+      ansible.builtin.stat:
+        path: /tmp/pubkeys
+        checksum_algorithm: sha256
+      register: pubkeys
+      tags:
+        - gen_auth_keys
+
+    - name: Write keys into nix config
+      ansible.builtin.replace:
+        path: /home/mm/.local/share/chezmoi/nixos/users/mm/default.nix
+        replace: '\1sha256 = "{{ pubkeys.stat.checksum }}";'
+        regexp: '^(\s*)sha256.*'
+      tags:
+        - gen_auth_keys

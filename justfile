@@ -9,4 +9,4 @@ upgrade:
 generate *ARGS:
     #!/usr/bin/env bash
     cd ansible
-    nix develop -c ansible-playbook nixos.yaml -t gen_auth_keys {{ ARGS }}
+    nix develop -c ansible-playbook nixos.yml -t gen_auth_keys {{ ARGS }}

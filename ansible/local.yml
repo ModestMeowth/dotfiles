@@ -1,6 +1,5 @@
----
-- name: Setup
-  hosts: all
-  tasks:
-    - name: Setup
-      ansible.builtin.setup:
+- name: Pwnyboy
+  hosts: pwnyboy
+  become: true
+  roles:
+    - iscsi

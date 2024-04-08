@@ -20,7 +20,7 @@
       devShells.default = let
         pkgs = import nixpkgs {
           inherit system;
-          # config.allowUnfree = true;
+          config.allowUnfree = true;
 
           overlays = [devshell.overlays.default];
         };

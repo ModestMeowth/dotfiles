@@ -1,0 +1,46 @@
+# {{ ansible_managed }}
+iscsid.startup = /bin/systemctl start iscsid.socket
+
+# Manual or automatic startup
+node.startup = {% if iscsi_auto_start %}automatic{% else %}manual{% endif %}
+
+# Login sequentially (Yes) or in parallel
+node.leading_login = {% if iscsi_leading_login %}Yes{% else %}No{% endif %}
+
+{% if iscsi_authentication %}
+
+{% endif %}
+
+# Timeouts
+node.session.timeo.replacement_timeout = 120
+node.conn[0].timeo.login_timeout = 15
+node.conn[0].timeo.logout_timeout = 15
+node.conn[0].timeo.noop_out_interval= 5
+node.conn[0].timeo.noop_out_timeout = 5
+node.session.err_timeo.abort_timeout = 15
+node.session.err_timeo.lu_reset_timeout = 30
+node.session.err_timeo.tgt_reset_tiemout = 30
+node.session.err_timeo.host_reset_timeout = 60
+
+# Retry
+node.seesion.intial_login_retry_max = 8
+
+# Session and device queue depth
+node.session.cmds_max = 128
+node.session.queue_depth = 32
+
+# Misc system performance settings
+node.session.xmit_thread_priority = -20
+
+# iSCSI settings
+node.session.iscsi.InitialR2T = No
+node.session.iscsi.ImmediateData = Yes
+node.session.iscsi.FirstBurstLength = 262144
+node.session.iscsi.MaxBurstLength = 16776192
+node.conn[0].iscsi.MaxRecvDataSegmentLength = 262144
+node.conn[0].iscsi.MaxXMitDataSegmentLength = 0
+discovery.sendtargets.iscsi.MaxRecvDataSegmentLength = 32768
+node.session.nr_sessions = 1
+node.session.reopen_max = 0
+node.session.iscsi.FastAbort = Yes
+node.session.scan = auto

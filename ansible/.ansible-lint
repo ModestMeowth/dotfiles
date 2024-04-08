@@ -1,0 +1,6 @@
+profile: production
+exclude_paths:
+  - tests/fixtures/formatting-before/
+  - tests/fixtures/formatting-prettier/
+  - galaxy_collections/
+  - roles/*/files/*.yml
