@@ -8,6 +8,6 @@ if [ "$(command -v nix)" ]; then
         nix run --extra-experimental-features flakes 'nixpkgs#home-manager' switch
     else
         printf ">>>>[ Home Manager\n"
-        home-manager switch --refresh
+        home-manager switch
     fi
 fi

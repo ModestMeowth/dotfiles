@@ -9,7 +9,6 @@
     homeDirectory = "/home/mm";
 
     packages = with pkgs; [
-      bitwarden
     ];
   };
 }
