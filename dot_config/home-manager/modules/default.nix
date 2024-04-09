@@ -22,6 +22,7 @@
       mosh
       bitwarden-cli
       direnv
+      ncdu
       nmap
     ];
   };
