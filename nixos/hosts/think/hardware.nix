@@ -26,6 +26,11 @@
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
 
+    kernelParams = [
+      "quiet"
+    ];
+    consoleLogLevel = 0;
+
     loader = {
       efi = {
         canTouchEfiVariables = true;

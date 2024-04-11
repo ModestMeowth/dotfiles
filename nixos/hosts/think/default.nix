@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   networking.hostName = "think";
 
   imports = [
@@ -23,5 +27,10 @@
       {addr = "100.91.249.96";}
       {addr = "fd7a:115c:a1e0::2501:f960";}
     ];
+  };
+
+  systemd.services.sshd = {
+    overrideStrategy = "asDropin";
+    unitConfig.After = lib.mkForce "tailscaled.service";
   };
 }

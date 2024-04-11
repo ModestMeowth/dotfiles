@@ -35,11 +35,6 @@
 
   # fixes ssh over tailscale
   networking.interfaces.eth0.mtu = 1500;
-  # mtu change errors out sshd at boot time when bound only to tailscale
-  systemd.services.sshd = {
-    overrideStrategy = "asDropin";
-    unitConfig.After = lib.mkForce "tailscaled.service";
-  };
   # allow wheel to fix mtu manually
   security.sudo.extraRules = [
     {

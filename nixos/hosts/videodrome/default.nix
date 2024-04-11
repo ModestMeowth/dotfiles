@@ -1,4 +1,4 @@
-{
+{lib, pkgs, ...}: {
   imports = [
     ./hardware.nix
     ../../modules/wsl.nix
@@ -24,10 +24,18 @@
     ];
   };
 
+  environment.systemPackages = with pkgs; [
+  ];
+
   services = {
     openssh.listenAddresses = [
       {addr = "100.67.248.24";}
       {addr = "fd7a:115c:a1e0::301:f818";}
     ];
+  };
+
+  systemd.services.sshd = {
+    overrideStrategy = "asDropin";
+    unitConfig.After = lib.mkForce "tailscaled.service";
   };
 }
