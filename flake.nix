@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +33,7 @@
     nix-db,
     lanzaboote,
     wsl,
+    disko,
     agenix,
     ...
   }: let
@@ -42,11 +48,12 @@
     in
       nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit agenix pkgs system;};
+        specialArgs = {inherit disko agenix pkgs system;};
         modules = [
           lanzaboote.nixosModules.lanzaboote
           wsl.nixosModules.wsl
           nix-db.nixosModules.nix-index
+          disko.nixosModules.disko
           agenix.nixosModules.default
           ./nixos/hosts/${hostname}
           ./nixos/users/${username}

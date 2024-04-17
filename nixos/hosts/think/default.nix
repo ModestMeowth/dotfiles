@@ -13,6 +13,7 @@
     ../../modules/pipewire.nix
     ../../modules/gnome.nix
     ../../modules/ssh.nix
+    ../../modules/k3s.nix
   ];
 
   environment.systemPackages = with pkgs; [
