@@ -18,7 +18,7 @@
 
   environment.systemPackages = with pkgs; [
     wezterm
-    firefox-bin
+    firefox
     fontpreview
   ];
 
