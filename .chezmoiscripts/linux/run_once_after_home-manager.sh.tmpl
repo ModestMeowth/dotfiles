@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+FLAKE="{{ .chezmoi.homeDir }}/.config/home-manager"
+
 run_update() {
     if [ "$(command -v nh)" ]; then
-        nh home switch
+        nh home switch "${FLAKE}"
     else
         home-manager switch
     fi
