@@ -1,9 +1,8 @@
 update:
-    sudo nixos-rebuild --flake .# switch
+    nh os switch .
 
 upgrade:
-    sudo -v
-    sudo nix flake update .
+    nix flake update .
     @just update
 
 generate *ARGS:

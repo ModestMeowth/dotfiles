@@ -40,7 +40,7 @@ update:
 
         {{- else }}
 
-    sudo nixos-rebuild switch --flake {{ .chezmoi.sourceDir }}#
+    nh os switch {{ .chezmoi.sourceDir }}
 
         {{- end }}
 
