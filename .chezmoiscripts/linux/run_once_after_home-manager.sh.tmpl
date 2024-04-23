@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 run_update() {
-    if [ ! "$(command -v nh)" ]; then
+    if [ "$(command -v nh)" ]; then
         nh home switch
     else
         home-manager switch
