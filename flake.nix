@@ -26,6 +26,11 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sshKeysMM = {
+      url = "https://github.com/ModestMeowth.keys";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -36,7 +41,7 @@
     disko,
     agenix,
     ...
-  }: let
+  } @ inputs: let
     genPkgs = system:
       import nixpkgs {
         inherit system;
@@ -48,7 +53,7 @@
     in
       nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit disko agenix pkgs system;};
+        specialArgs = {inherit inputs disko agenix pkgs system;};
         modules = [
           lanzaboote.nixosModules.lanzaboote
           wsl.nixosModules.wsl

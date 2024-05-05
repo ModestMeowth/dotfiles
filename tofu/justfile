@@ -1,0 +1,19 @@
+default:
+    just --list
+
+tofu +ARGS:
+    #!/usr/bin/env bash
+    set -a
+    source /run/agenix/terraform || true
+    set +a
+
+    tofu {{ ARGS }}
+
+plan *ARGS:
+    @just tofu plan {{ ARGS }}
+
+apply *ARGS:
+    @just tofu apply {{ ARGS }}
+
+init *ARGS:
+   tofu init -backend-config=/run/agenix/minio {{ ARGS }}
