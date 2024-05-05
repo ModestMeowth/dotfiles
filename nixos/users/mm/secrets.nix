@@ -1,6 +1,6 @@
 {
   age.secrets = {
-    terraform = {
+    tofu = {
       file = ../../../secrets/tofu.age;
       mode = "600";
       owner = "mm";
