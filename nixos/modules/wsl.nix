@@ -7,6 +7,7 @@
 
   imports = [
     ./common.nix
+    ../overlays/systemd-wslfix.nix
   ];
 
   wsl = {
@@ -16,20 +17,6 @@
     };
     startMenuLaunchers = true;
   };
-
-  # patch fixes https://github.com/microsoft/WSL/issues/8879
-  nixpkgs.overlays = [
-    (final: prev:
-      with final; {
-        systemd-wslfix = final.systemd.overrideAttrs ({patches, ...}: {
-          patches =
-            patches
-            ++ [
-              ../patches/systemd-wslfix.patch
-            ];
-        });
-      })
-  ];
 
   systemd.package = pkgs.systemd-wslfix;
 

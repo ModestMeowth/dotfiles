@@ -1,4 +1,4 @@
-{
+_: {
   disko.devices = {
     disk = {
       nvme0n1 = {
@@ -15,15 +15,10 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-              };
-            };
-
-            SWAP = {
-              type = "8200";
-              size = "512M";
-              content = {
-                type = "swap";
-                randomEncryption = true;
+                mountOptions = [
+                  "defaults"
+                  "umask=0077"
+                ];
               };
             };
 
@@ -42,11 +37,13 @@
     zpool = {
       zroot = {
         type = "zpool";
-        rootFSOptions = {
+        options = {
+          ashift = "12";
+          autotrim = "on";
+        };
+        rootFsOptions = {
           compression = "zstd";
-          ashift = 12;
           acltype = "posixacl";
-          autotrim = true;
           canmount = "off";
           dnodesize = "auto";
           normalization = "formD";
@@ -57,19 +54,30 @@
         };
 
         datasets = {
-          "root" = {
+          root = {
             type = "zfs_fs";
-            options.mountpoint = "/";
+            mountpoint = "/";
+            options.mountpoint = "legacy";
+            postCreateHook = "zfs snapshot zroot/root@blank";
           };
 
-          "home" = {
+          nix = {
             type = "zfs_fs";
-            options.mountpoint = "/home";
+            mountpoint = "/nix";
+            options.mountpoint = "legacy";
           };
 
-          "home/mm" = {
+          presist = {
             type = "zfs_fs";
-            options.mountpoint = "/home/mm";
+            mountpoint = "/persist";
+            options.mountpoint = "legacy";
+          };
+
+          home = {
+            type = "zfs_fs";
+            mountpoint = "/home";
+            options.mountpoint = "legacy";
+            postCreateHook = "zfs snapshot zroot/home@blank";
           };
         };
       };

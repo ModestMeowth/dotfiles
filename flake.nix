@@ -2,8 +2,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nix-db = {
-      url = "github:nix-community/nix-index-database";
+    disko = {
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -17,13 +17,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    disko = {
-      url = "github:nix-community/disko";
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix = {
-      url = "github:ryantm/agenix";
+    nixdb = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -35,18 +35,17 @@
 
   outputs = {
     nixpkgs,
-    nix-db,
+    disko,
     lanzaboote,
     wsl,
-    disko,
     agenix,
+    nixdb,
     ...
   } @ inputs: let
     genPkgs = system:
       import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [(import ./nixos/overlays/systemd-wslfix.nix)];
       };
     nixosSystem = system: hostname: username: let
       pkgs = genPkgs system;
@@ -55,11 +54,11 @@
         inherit system;
         specialArgs = {inherit inputs disko agenix pkgs system;};
         modules = [
+          disko.nixosModules.disko
           lanzaboote.nixosModules.lanzaboote
           wsl.nixosModules.wsl
-          nix-db.nixosModules.nix-index
-          disko.nixosModules.disko
           agenix.nixosModules.default
+          nixdb.nixosModules.nix-index
           ./nixos/hosts/${hostname}
           ./nixos/users/${username}
         ];
@@ -67,11 +66,13 @@
   in {
     formatter = {
       x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-      aarch64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+      x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.alejandra;
+      aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.alejandra;
+      aarch64-darwin= nixpkgs.legacyPackages.aarch64-darwin.alejandra;
     };
 
     nixosConfigurations = {
-      think = nixosSystem "x86_64-linux" "think" "mm";
+      rocinante = nixosSystem "x86_64-linux" "rocinante" "mm";
       videodrome = nixosSystem "x86_64-linux" "videodrome" "mm";
     };
   };

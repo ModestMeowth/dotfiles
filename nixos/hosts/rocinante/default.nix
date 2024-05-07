@@ -5,7 +5,28 @@
   pkgs,
   ...
 }: {
-  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+  networking.hostName = "rocinante";
+
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ./disks.nix
+    ./../../modules
+    ./../../modules/secureboot.nix
+    ./../../modules/gpu.nix
+    ./../../modules/pipewire.nix
+    ./../../modules/ssh.nix
+    ./../../modules/gnome.nix
+  ];
+
+  services = {
+    fwupd.enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    firefox
+    dig
+    nmap
+  ];
 
   hardware = {
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -21,10 +42,21 @@
   services.xserver.videoDrivers = ["amdgpu"];
 
   boot = {
-    initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "sd_mod"];
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "usb_storage"
+      "sd_mod"
+    ];
     initrd.kernelModules = ["amdgpu"];
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+    kernelModules = [
+      "acpi_call"
+      "kvm-amd"
+    ];
+    extraModulePackages = [
+    ] ++ (with config.boot.kernelPackages; [
+      acpi_call
+    ]);
 
     kernelParams = [
       "quiet"
@@ -44,31 +76,4 @@
       timeout = 3;
     };
   };
-
-  fileSystems."/" = {
-    device = "zroot/root";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" = {
-    device = "zroot/home";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home/mm" = {
-    device = "zroot/home/mm";
-    fsType = "zfs";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/3ACB-5C91";
-    fsType = "vfat";
-  };
-
-  swapDevices = [
-    {
-      device = "/dev/disk/by-partlabel/SWAP";
-      randomEncryption.enable = true;
-    }
-  ];
 }
