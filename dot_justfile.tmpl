@@ -10,6 +10,11 @@ nix-lint:
     cd {{ .chezmoi.sourceDir }}
     nix fmt
 
+nix-flake-update:
+    #!/usr/bin/env bash
+    cd {{ .chezmoi.sourceDir }}
+    nix flake update .
+
     {{- end }}
 
 hm-clean:
@@ -19,6 +24,10 @@ hm-lint:
     #!/usr/bin/env bash
     cd "$(chezmoi source-path {{ .chezmoi.homeDir }}/.config/home-manager)"
     nix fmt
+
+hm-flake-update:
+    #!/usr/bin/env bash
+    nix flake update "$(chezmoi source-path {{ .chezmoi.homeDir}}/.config/home-manager)"
 
 update:
     #!/usr/bin/env bash

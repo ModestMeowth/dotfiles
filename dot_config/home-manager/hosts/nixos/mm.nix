@@ -1,13 +1,13 @@
-{ pkgs, ... }: {
-    imports = [
-        ../../modules
+{pkgs, ...}: {
+  imports = [
+    ../../modules
+  ];
+
+  home = {
+    username = "mm";
+    homeDirectory = "/home/mm";
+
+    packages = with pkgs; [
     ];
-
-    home = {
-        username = "mm";
-        homeDirectory = "/home/mm";
-
-        packages = with pkgs; [
-        ];
-    };
+  };
 }
