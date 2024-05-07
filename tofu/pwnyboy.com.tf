@@ -1,5 +1,10 @@
+data "cloudflare_accounts" "pwnyboy_account" {
+  name = "Pwnyboy"
+}
+
 resource "cloudflare_zone" "domain_pwnyboycom" {
-  zone       = "pwnyboy.com"
+  account_id = data.cloudflare_accounts.pwnyboy_account.accounts[0].id
+  zone = "pwnyboy.com"
 }
 
 resource "cloudflare_record" "domain_pwnyboycom_A" {

@@ -4,7 +4,7 @@ default:
 tofu +ARGS:
     #!/usr/bin/env bash
     set -a
-    source /run/agenix/terraform || true
+    source /run/agenix/tofu || true
     set +a
 
     tofu {{ ARGS }}
