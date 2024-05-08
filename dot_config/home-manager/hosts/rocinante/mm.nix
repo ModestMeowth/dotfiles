@@ -9,6 +9,7 @@
     homeDirectory = "/home/mm";
 
     packages = with pkgs; [
+      wezterm
     ];
   };
 }
