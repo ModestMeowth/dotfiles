@@ -5,12 +5,12 @@
 
     {{- if eq .chezmoi.osRelease.id "nixos" }}
 
-nix-lint:
+os-lint:
     #!/usr/bin/env bash
     cd {{ .chezmoi.sourceDir }}
     nix fmt
 
-nix-flake-update:
+os-flake-update:
     #!/usr/bin/env bash
     cd {{ .chezmoi.sourceDir }}
     nix flake update .
@@ -49,7 +49,12 @@ update:
 
         {{- else }}
 
-    nh os switch {{ .chezmoi.sourceDir }}
+    if [ "$(command -v nh)" ]; then
+        nh os switch -u {{ .chezmoi.sourceDir }}
+    else
+        @just os-flake-update
+        sudo nixos-rebuild switch {{ .chezmoi.sourceDir }}
+    fi
 
         {{- end }}
 
@@ -57,6 +62,9 @@ update:
 
 update:
     chezmoi update
+
+nv:
+    sudo choco upgrade -y nvidia-display-driver
 
 {{- end }}
 
@@ -78,8 +86,5 @@ compose-clean:
 
 pwnyup:
     tailscale ping -c 0 pwnyboy
-
-nv:
-    sudo choco upgrade -y nvidia-display-driver
 
 {{- end }}
