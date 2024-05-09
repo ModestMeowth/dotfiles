@@ -1,13 +1,8 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   system.stateVersion = "24.05";
 
   imports = [
     ./common.nix
-    ../overlays/systemd-wslfix.nix
   ];
 
   wsl = {
@@ -18,7 +13,14 @@
     startMenuLaunchers = true;
   };
 
-  systemd.package = pkgs.systemd-wslfix;
+  # patch fixes https://github.com/microsoft/WSL/issues/8879
+  systemd.package = pkgs.systemd.overrideAttrs (final: prev: {
+    patches =
+      prev.patches
+      ++ [
+        ../patches/systemd-wslfix.patch
+      ];
+  });
 
   # fixes ssh over tailscale
   networking.interfaces.eth0.mtu = 1500;

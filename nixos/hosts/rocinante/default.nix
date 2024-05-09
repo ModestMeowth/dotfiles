@@ -53,10 +53,12 @@
       "acpi_call"
       "kvm-amd"
     ];
-    extraModulePackages = [
-    ] ++ (with config.boot.kernelPackages; [
-      acpi_call
-    ]);
+    extraModulePackages =
+      [
+      ]
+      ++ (with config.boot.kernelPackages; [
+        acpi_call
+      ]);
 
     kernelParams = [
       "quiet"
