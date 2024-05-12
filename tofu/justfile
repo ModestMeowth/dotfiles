@@ -16,4 +16,7 @@ apply *ARGS:
     @just tofu apply {{ ARGS }}
 
 init *ARGS:
-   tofu init -backend-config=/run/agenix/minio {{ ARGS }}
+    tofu init -backend-config=/run/agenix/minio {{ ARGS }}
+
+update:
+    nix flake update .
