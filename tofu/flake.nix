@@ -4,9 +4,6 @@
   inputs.devshell.url = "github:numtide/devshell";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  # opentofu 1.7.0  is in stable, unstable is still 1.6.2
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-
   inputs.flake-compat = {
     url = "github:edolstra/flake-compat";
     flake = false;
