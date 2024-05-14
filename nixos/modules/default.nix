@@ -1,9 +1,8 @@
-{
+{ pkgs, ...}: {
   imports = [
     ./common.nix
     ./networking.nix
     ./firewall.nix
-    ./agenix.nix
   ];
 
   i18n = {
@@ -20,4 +19,8 @@
       LC_TIME = "en_US.UTF-8";
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    sbctl
+  ];
 }

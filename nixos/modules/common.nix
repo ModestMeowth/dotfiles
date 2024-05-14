@@ -27,6 +27,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    agenix
     pciutils
     git
     curl

@@ -35,30 +35,26 @@
 
   outputs = {
     nixpkgs,
-    disko,
-    lanzaboote,
-    wsl,
-    agenix,
     nixdb,
     ...
   } @ inputs: let
-    genPkgs = system:
+    genPkgs = system: overlays:
       import nixpkgs {
-        inherit system;
+        inherit system overlays;
         config.allowUnfree = true;
       };
     nixosSystem = system: hostname: username: let
-      pkgs = genPkgs system;
+      overlays = [
+        inputs.agenix.overlays.default
+      ];
+      pkgs = genPkgs system overlays;
     in
       nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs disko agenix pkgs system;};
+        specialArgs = {inherit inputs pkgs system;};
         modules = [
-          disko.nixosModules.disko
-          lanzaboote.nixosModules.lanzaboote
-          wsl.nixosModules.wsl
-          agenix.nixosModules.default
-          nixdb.nixosModules.nix-index
+          inputs.agenix.nixosModules.default
+          inputs.nixdb.nixosModules.nix-index
           ./nixos/hosts/${hostname}
           ./nixos/users/${username}
         ];
@@ -66,9 +62,7 @@
   in {
     formatter = {
       x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-      x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.alejandra;
       aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.alejandra;
-      aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
     };
 
     nixosConfigurations = {

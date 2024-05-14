@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   modulesPath,
   pkgs,
@@ -9,6 +10,7 @@
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.disko.nixosModules.disko
     ./disks.nix
     ./../../modules
     ./../../modules/secureboot.nix

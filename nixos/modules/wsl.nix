@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{ inputs, pkgs, ...}: {
   system.stateVersion = "24.05";
 
   imports = [
+    inputs.wsl.nixosModules.default
     ./common.nix
   ];
 

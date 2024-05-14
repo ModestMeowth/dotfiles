@@ -7,7 +7,6 @@
     ./hardware.nix
     ../../modules/wsl.nix
     ../../modules/ssh.nix
-    ../../modules/agenix.nix
   ];
 
   wsl.wslConf = {
