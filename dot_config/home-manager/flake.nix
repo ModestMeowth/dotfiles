@@ -8,6 +8,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    xenon = {
+      url = "github:LongerHV/xenon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nvimPlugins = {
+      url = "github:ModestMeowth/pkgs-nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -16,11 +31,20 @@
     ...
   } @ inputs: let
     homeConfig = system: hostname: username: let
-      specialArgs = inputs // {inherit system hostname;};
+      overlays = {
+        agenix = inputs.agenix.overlays.default;
+        nvimPlugins = inputs.nvimPlugins.overlays.default;
+      };
+      specialArgs = inputs // {inherit system hostname overlays;};
     in
       home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {system = "${system}";};
+        pkgs = import nixpkgs {
+          overlays = builtins.attrValues overlays;
+          system = "${system}";
+        };
         modules = [
+          inputs.agenix.homeManagerModules.age
+          inputs.xenon.homeManagerModules.xenon
           ./hosts/${hostname}/${username}.nix
         ];
         extraSpecialArgs = specialArgs;
@@ -28,9 +52,7 @@
   in {
     formatter = {
       x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-      x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.alejandra;
       aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.alejandra;
-      aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
     };
 
     homeConfigurations = {

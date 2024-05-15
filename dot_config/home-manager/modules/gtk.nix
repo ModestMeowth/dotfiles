@@ -123,8 +123,8 @@
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       name = "open-terminal";
-      commannd = "wezterm";
-      binding = "<Super>Return";
+      command = "wezterm start --cwd .";
+      binding = "<Super><Shift>Return";
     };
   };
 }

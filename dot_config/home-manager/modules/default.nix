@@ -5,13 +5,15 @@
 }: {
   imports = [
     ./git.nix
-    ./neovim.nix
+    ./neovim
   ];
 
+  systemd.user.startServices = "sd-switch";
   home = {
     stateVersion = "24.05";
 
     packages = with pkgs; [
+      agenix
       chezmoi
       direnv
       eza
@@ -22,6 +24,7 @@
       ncdu
       nmap
       starship
+      ripgrep
       zellij
       zoxide
     ];
