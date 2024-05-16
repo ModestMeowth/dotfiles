@@ -2,6 +2,7 @@
   imports = [
     ../../modules
     ../../modules/gtk.nix
+    ../../modules/neovim/plugins/lsp
   ];
 
   home = {

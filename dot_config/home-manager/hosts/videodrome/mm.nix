@@ -1,6 +1,7 @@
 {
   imports = [
     ../../modules
+    ../../modules/neovim/lsp
   ];
 
   home = {

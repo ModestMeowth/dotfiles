@@ -13,16 +13,6 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    xenon = {
-      url = "github:LongerHV/xenon";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nvimPlugins = {
-      url = "github:ModestMeowth/pkgs-nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -33,7 +23,6 @@
     homeConfig = system: hostname: username: let
       overlays = {
         agenix = inputs.agenix.overlays.default;
-        nvimPlugins = inputs.nvimPlugins.overlays.default;
       };
       specialArgs = inputs // {inherit system hostname overlays;};
     in
@@ -44,7 +33,6 @@
         };
         modules = [
           inputs.agenix.homeManagerModules.age
-          inputs.xenon.homeManagerModules.xenon
           ./hosts/${hostname}/${username}.nix
         ];
         extraSpecialArgs = specialArgs;
