@@ -1,7 +1,7 @@
 {
   imports = [
     ../../modules
-    ../../modules/neovim/lsp/cmp.nix
+    ../../modules/neovim/plugins/lsp/cmp.nix
   ];
 
   home = {
