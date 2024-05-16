@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   programs.neovim = {
-    plugins = with pkgs.VimPlugins; [
+    plugins = with pkgs.vimPlugins; [
       cmp-buffer
       cmp-cmdline
-      cmp-luasnip
+      cmp_luasnip
       cmp-nvim-lsp
       cmp-path
       luasnip
