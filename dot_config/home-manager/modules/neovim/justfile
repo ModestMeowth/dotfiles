@@ -1,0 +1,36 @@
+swBinPath := "/run/current-system/sw/bin"
+profileBinPath := env_var("HOME") + "/.nix-profile/bin"
+defaultFlakePath := env_var("HOME") + "/.config/home-manager"
+
+useNh := if path_exists(swBinPath + "/nh") == "true" {
+        "true"
+    } else if path_exists(profileBinPath + "/nh") == "true" {
+        "true"
+    } else { "false" }
+
+useChezmoi := if path_exists(swBinPath + "/chezmoi") == "true" {
+        "true"
+    } else if path_exists(profileBinPath + "/chezmoi") == "true" {
+        "true"
+    } else { "false" }
+
+command := if useNh == "true" { "nh home" } else { "home-manager" }
+flakePath := if useChezmoi == "true" {
+    "$(chezmoi source-path " + defaultFlakePath + ")"
+    } else { "/etc/nixos" }
+
+default:
+    just --list
+
+lint:
+    cd "{{ flakePath }}"
+    nix fmt
+
+switch *FLAGS:
+    {{ command }} switch {{ FLAGS }} "{{ flakePath }}"
+
+build *FLAGS:
+    {{ command }} build {{ FLAGS }} "{{ flakePath }}"
+
+test *FLAGS:
+    {{ command }} test {{ FLAGS }} "{{ flakePath }}"
