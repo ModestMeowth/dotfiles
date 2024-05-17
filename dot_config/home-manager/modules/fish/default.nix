@@ -15,10 +15,16 @@
 
     interactiveShellInit = /*fish*/ ''
       set -g fish_greeting
+      fish_vi_keybindings
     '';
 
     shellAbbrs = {
       ssh = "mosh";
+      g = "git";
+      ga = "git add";
+      clone = "git clone";
+      co = "git checkout";
+      cz = "git cz c";
     };
   };
 }

@@ -4,7 +4,7 @@
       enable = true;
       userName = "Daniel Eberle";
       userEmail = "daniel.j.eberle@protonmail.com";
-      config = {
+      extraConfig = {
         color = {
           ui = "auto";
 
