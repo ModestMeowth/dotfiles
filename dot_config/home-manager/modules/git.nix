@@ -3,7 +3,7 @@
     git = {
       enable = true;
       userName = "Daniel Eberle";
-      userEmail = "daniel.j.eberle@protonmail.com"
+      userEmail = "daniel.j.eberle@protonmail.com";
       config = {
         color = {
           ui = "auto";
