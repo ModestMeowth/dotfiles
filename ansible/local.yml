@@ -1,5 +1,0 @@
-- name: Pwnyboy
-  hosts: pwnyboy
-  become: true
-  roles:
-    - iscsi
