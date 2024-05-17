@@ -1,0 +1,10 @@
+default:
+    @just --list
+
+nixos-update:
+    nh home switch "github:ModestMeowth/nixos"
+
+home-update:
+    nh home switch "github:ModestMeowth/nixos"
+
+update: nixos-update home-update
