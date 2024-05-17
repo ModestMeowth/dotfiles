@@ -1,8 +1,9 @@
 {pkgs, ...}: {
   imports = [
     ../../modules
-    ../../modules/gtk.nix
+    ../../modules/gtk
     ../../modules/neovim/plugins/lsp
+    ../../modules/term/wezterm
   ];
 
   home = {

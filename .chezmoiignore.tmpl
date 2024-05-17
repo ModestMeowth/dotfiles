@@ -9,8 +9,10 @@ ansible/
 tofu/
 secrets/
 .cz.toml
-.config/fish
-.config/nvim
+
+{{ if lookPath "nix" }}
+.config/
+{{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
 .chezmoiscripts/linux/**

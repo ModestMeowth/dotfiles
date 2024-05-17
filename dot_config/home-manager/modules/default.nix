@@ -1,10 +1,11 @@
 {
-  config,
+  inputs,
   pkgs,
   ...
 }: {
   imports = [
     ./git.nix
+    ./fish
     ./neovim
   ];
 
@@ -15,18 +16,11 @@
     packages = with pkgs; [
       agenix
       chezmoi
-      direnv
-      eza
-      fd
-      fzf
       just
       mosh
       ncdu
       nmap
-      starship
       ripgrep
-      zellij
-      zoxide
     ];
   };
 
@@ -40,6 +34,32 @@
         batdiff
         prettybat
       ];
+      themes.dracula = {
+        src = "${inputs.dracula-sublime}";
+        file = "Dracula.tmTheme";
+      };
+    };
+  };
+
+  editorconfig = {
+    enable = true;
+    settings = {
+      "*" = {
+        charset = "utf-8";
+        end_of_line = "lf";
+        trim_trailing_whitespace = true;
+        insert_final_newline = true;
+        indent_style = "space";
+        indent_size = 4;
+      };
+
+      "*.{yaml,nix}" = {
+        indent_size = 2;
+      };
+
+      "Makefile" = {
+        indent_style = "tab";
+      };
     };
   };
 }

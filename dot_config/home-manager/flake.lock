@@ -45,6 +45,70 @@
         "type": "github"
       }
     },
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715889010,
+        "narHash": "sha256-Tf0zRCxyVSFV/nvNsq0B0kc7ABkoPdGkW/ERh+w3vjM=",
+        "owner": "ModestMeowth",
+        "repo": "dotfiles",
+        "rev": "4140dcbd83c5e9c5111b342dd8f9827defff563e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ModestMeowth",
+        "repo": "dotfiles",
+        "type": "github"
+      }
+    },
+    "dracula-sublime": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693403648,
+        "narHash": "sha256-8mCovVSrBjtFi5q+XQdqAaqOt3Q+Fo29eIDwECOViro=",
+        "owner": "dracula",
+        "repo": "sublime",
+        "rev": "456d3289827964a6cb503a3b0a6448f4326f291b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dracula",
+        "repo": "sublime",
+        "type": "github"
+      }
+    },
+    "dracula-wezterm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675662320,
+        "narHash": "sha256-sEoXqIAqedezT7cA0HhPsIfu1bWWxJS5+cd7nwK/Aps=",
+        "owner": "dracula",
+        "repo": "wezterm",
+        "rev": "0db525a46b5242ee15fd4a52f887e172fbde8e51",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dracula",
+        "repo": "wezterm",
+        "type": "github"
+      }
+    },
+    "dracula-zellij": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672085892,
+        "narHash": "sha256-Sqj9EhDhr5Kv9x9GwfPUvNOQocGzbVScVSGnR0/yf7Q=",
+        "owner": "dracula",
+        "repo": "zellij",
+        "rev": "948a6dcae1d82b58ba725b464a96e6a1bc1c11cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dracula",
+        "repo": "zellij",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -105,6 +169,10 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "dotfiles": "dotfiles",
+        "dracula-sublime": "dracula-sublime",
+        "dracula-wezterm": "dracula-wezterm",
+        "dracula-zellij": "dracula-zellij",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs"
       }

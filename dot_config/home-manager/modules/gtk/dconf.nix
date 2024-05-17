@@ -1,26 +1,7 @@
 {
   lib,
-  pkgs,
   ...
 }: {
-  home = {
-    packages = with pkgs;
-      [
-        dracula-theme
-        dracula-icon-theme
-      ]
-      ++ (with gnomeExtensions; [
-        user-themes
-        gsconnect
-        forge
-      ]);
-  };
-
-  gtk = {
-    theme.name = "Dracula";
-    iconTheme.name = "Dracula";
-  };
-
   dconf.settings = let
     inherit (lib.hm.gvariant) mkTuple;
   in {

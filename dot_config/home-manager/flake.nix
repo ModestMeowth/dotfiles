@@ -13,18 +13,40 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dotfiles = {
+      url = "github:ModestMeowth/dotfiles";
+      flake = false;
+    };
+
+    dracula-sublime = {
+      url = "github:dracula/sublime";
+      flake = false;
+    };
+
+    dracula-zellij = {
+      url = "github:dracula/zellij";
+      flake = false;
+    };
+
+    dracula-wezterm = {
+      url = "github:dracula/wezterm";
+      flake = false;
+    };
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     ...
   } @ inputs: let
     homeConfig = system: hostname: username: let
+      inherit (self) outputs;
       overlays = {
         agenix = inputs.agenix.overlays.default;
       };
-      specialArgs = inputs // {inherit system hostname overlays;};
+      specialArgs = inputs // {inherit system hostname overlays inputs outputs;};
     in
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
