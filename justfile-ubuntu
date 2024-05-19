@@ -1,0 +1,9 @@
+@default:
+    just --choose
+
+system-update:
+    sudo apt update
+    sudo apt upgrade
+
+home-update:
+    nh home switch "github:ModestMeowth/dotfiles" -- --refresh
