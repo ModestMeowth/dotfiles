@@ -6,6 +6,6 @@ system-update:
     sudo nala upgrade
 
 home-update:
-    nh home switch "github:ModestMeowth/dotfiles" -- --refresh
+    nh home switch "github:ModestMeowth/nixos" -- --refresh
 
 update: system-update home-update
