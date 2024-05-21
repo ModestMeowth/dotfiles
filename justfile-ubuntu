@@ -2,8 +2,15 @@
     just --choose
 
 system-update:
-    sudo apt update
-    sudo apt upgrade
+    if [ ! "$(command -v nala)" ]; then
+        sudo apt update
+        sudo apt upgrade
+    else
+        sudo nala update
+        sudo nala upgrade
+    fi
 
 home-update:
     nh home switch "github:ModestMeowth/dotfiles" -- --refresh
+
+update: system-update home-update
