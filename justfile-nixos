@@ -1,5 +1,5 @@
 default:
-    @just --list
+    @just --choose --justfile {{ justfile() }}
 
 nixos-update:
     nh home switch "github:ModestMeowth/nixos" -- --refresh
