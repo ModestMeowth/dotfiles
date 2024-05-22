@@ -18,4 +18,6 @@ config.font = wt.font {
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 
+config.window_close_confirmation = "NeverPrompt"
+
 return config
