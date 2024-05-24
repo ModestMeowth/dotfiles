@@ -1,10 +1,10 @@
 default:
-    @just --choose --justfile {{ justfile() }}
+    @just --choose --justfile "{{ justfile() }}"
 
-nixos-update:
-    nh home switch "github:ModestMeowth/nixos" -- --refresh
+system-update:
+    nh os switch "github:ModestMeowth/nixos" -- --refresh
 
 home-update:
     nh home switch "github:ModestMeowth/nixos" -- --refresh
 
-update: nixos-update home-update
+update: system-update home-update
