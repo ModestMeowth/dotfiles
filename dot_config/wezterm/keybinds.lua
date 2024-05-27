@@ -1,11 +1,10 @@
 local wt = require "wezterm"
-local act = wt.action
 
 return {
     {
         key = "b",
         mods = "LEADER|CTRL",
-        action = act.SendKey {
+        action = wt.action.SendKey {
             key = 'b',
             mods = 'CTRL'
         },
@@ -13,65 +12,65 @@ return {
    {
         key = "%",
         mods = "LEADER",
-        action = act.SplitHorizontal {
+        action = wt.action.SplitHorizontal {
             domain = "CurrentPaneDomain",
         },
     },
     {
         key = "\"",
         mods = "LEADER",
-        action  = act.SplitVertical {
+        action  = wt.action.SplitVertical {
             domain = "CurrentPaneDomain",
         },
     },
     {
         key = "n",
         mods = "LEADER",
-        action = act.SpawnTab "CurrentPaneDomain",
+        action = wt.action.SpawnTab "CurrentPaneDomain",
     },
     {
         key = "c",
         mods = "LEADER",
-        action = act.TogglePaneZoomState,
+        action = wt.action.TogglePaneZoomState,
     },
     {
         key = "h",
         mods = "LEADER",
-        action = act.ActivatePaneDirection "Left",
+        action = wt.action.ActivatePaneDirection "Left",
     },
     {
         key = "j",
         mods = "LEADER",
-        action = act.ActivatePaneDirection "Down",
+        action = wt.action.ActivatePaneDirection "Down",
     },
     {
         key = "k",
         mods = "LEADER",
-        action = act.ActivatePaneDirection "Up",
+        action = wt.action.ActivatePaneDirection "Up",
     },
     {
         key = "l",
         mods = "LEADER",
-        action = act.ActivatePaneDirection "Right",
+        action = wt.action.ActivatePaneDirection "Right",
     },
     {
         key = "H",
         mods = "LEADER",
-        action = act.AdjustPaneSize {"Left", 1},
+        action = wt.action.AdjustPaneSize {"Left", 1},
     },
     {
         key = "J",
         mods = "LEADER",
-        action = act.AdjustPaneSize {"Down", 1},
+        action = wt.action.AdjustPaneSize {"Down", 1},
     },
     {
         key = "K",
         mods = "LEADER",
-        action = act.AdjustPaneSize {"Up", 1},
+        action = wt.action.AdjustPaneSize {"Up", 1},
     },
     {
         key = "L",
         mods = "LEADER",
-        action = act.AdjustPaneSize {"Right", 1},
+        action = wt.action.AdjustPaneSize {"Right", 1},
     },
 }

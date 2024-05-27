@@ -27,8 +27,6 @@ table.insert(config.hyperlink_rules, {
     format = "https://github.com/$1/$3",
 })
 
-config.disable_default_key_bindings = true
-
 config.leader = {
     key = 'b',
     mods = 'CTRL',
