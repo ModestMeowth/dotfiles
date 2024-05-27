@@ -35,23 +35,25 @@ config.leader = {
 
 config.keys = {
     {
-        key = 'b',
-        mods = 'LEADER|CTRL',
-        action = wt.action.SendKey {
-            key = 'a',
-            mods = 'CTRL'
-        },
-    },
-    {
         key = '%',
-        mode = "LEADER",
+        mode = 'LEADER',
         action = wt.action.SplitHorizontal {
+            domain = 'CurrentPaneDomain'
         },
     },
     {
         key = '"',
-        mode = "LEADER",
+        mode = 'LEADER',
         action  = wt.action.SplitVertical {
+            domain = 'CurrentPaneDomain'
+        },
+    },
+    {
+        key = 'b',
+        mods = 'LEADER|CTRL',
+        action = wt.action.SendKey {
+            key = 'b',
+            mods = 'CTRL'
         },
     },
 }
