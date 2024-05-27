@@ -23,7 +23,7 @@ config.window_close_confirmation = "NeverPrompt"
 config.hyperlink_rules = wt.default_hyperlink_rules()
 
 table.insert(config.hyperlink_rules, {
-    regex = [[["]?[\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+    regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
     format = "https://github.com/$1/$3",
 })
 
