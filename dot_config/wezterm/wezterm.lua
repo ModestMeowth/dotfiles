@@ -20,4 +20,11 @@ config.use_fancy_tab_bar = false
 
 config.window_close_confirmation = "NeverPrompt"
 
+config.hyperlink_rules = wt.default_hyperlink_rules()
+
+table.insert(config.hyperlink_rules, {
+    regex = [[["]?[\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+    format = "https://github.com/$1/$3",
+})
+
 return config
