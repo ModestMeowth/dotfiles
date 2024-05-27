@@ -27,35 +27,14 @@ table.insert(config.hyperlink_rules, {
     format = "https://github.com/$1/$3",
 })
 
+config.disable_default_key_bindings = true
+
 config.leader = {
     key = 'b',
     mods = 'CTRL',
     timeout_milliseconds = 1000,
 }
 
-config.keys = {
-    {
-        key = '%',
-        mode = 'LEADER',
-        action = wt.action.SplitHorizontal {
-            domain = 'CurrentPaneDomain'
-        },
-    },
-    {
-        key = '"',
-        mode = 'LEADER',
-        action  = wt.action.SplitVertical {
-            domain = 'CurrentPaneDomain'
-        },
-    },
-    {
-        key = 'b',
-        mods = 'LEADER|CTRL',
-        action = wt.action.SendKey {
-            key = 'b',
-            mods = 'CTRL'
-        },
-    },
-}
+config.keys = require "keybinds"
 
 return config
