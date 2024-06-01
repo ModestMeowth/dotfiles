@@ -27,12 +27,14 @@ table.insert(config.hyperlink_rules, {
     format = "https://github.com/$1/$3",
 })
 
-config.leader = {
-    key = 'b',
-    mods = 'CTRL',
-    timeout_milliseconds = 1000,
-}
-
 config.keys = require "keybinds"
+
+wt.on("update-right-status", function(window, _)
+    local leader = ""
+    if window:leader_is_active() then
+        leader = "LEADER"
+    end
+    window:set_right_status(leader)
+end)
 
 return config
