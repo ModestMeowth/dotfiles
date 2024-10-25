@@ -1,23 +1,2 @@
 # Don't pollute home
-justfile-nixos
-install.sh
 README.md
-.cz.toml
-
-{{ if or (lookPath "nix") (eq .chezmoi.os "windows") }}
-.config/
-{{ end }}
-
-{{ if ne .chezmoi.os "windows" }}
-Documents
-AppData
-.wslconfig
-{{ end }}
-
-{{ if or .headless }}
-.config/hypr
-.config/foot
-    {{ if ne .chezmoi.os "windows" }}
-# Non-windows gui stuff
-    {{ end }}
-{{ end }}
