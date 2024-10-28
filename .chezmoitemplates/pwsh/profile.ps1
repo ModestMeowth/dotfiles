@@ -20,8 +20,15 @@ function justup {
     winget pin add -e Casey.Just
 }
 
-Set-Alias -Name ls -Value la -Options AllScope -Scope Global -ErrorAction SilentlyContinue -Force
-Set-Alias -Name ll -Value la -Options AllScope -Scope Global -ErrorAction SilentlyContinue -Force
+Remove-Alias -Name ls
+
+function ls { eza.exe --icons --sort=type }
+
+function ll { eza.exe -l --icons --sort=type }
+
+function la { eza.exe -la --icons --sort=type }
+
+function tree { eza.exe -T --icons --sort=type }
 
 Set-Alias -Name cd -Value __zoxide_z -Option AllScope -Scope Global -Force
 Set-Alias -Name ci -Value __zoxide_zi -Option AllScope -Scope Global -Force
