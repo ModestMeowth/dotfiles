@@ -1,11 +1,11 @@
-$Env:DIRENV_CONFIG = "$Env:LOCALAPPDATA\direnv"
+Import-Module -Name Terminal-Icons
+Import-Module -Name PSFzf
+
 $Env:XDG_CACHE_HOME = "$Env:USERPROFILE\.local\cache"
+$Env:XDG_CONFIG_HOME = "$Env:USERPROFILE\.config"
 $Env:XDG_DATA_HOME = "$Env:USERPROFILE\.local\share"
 
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-    Import-Module "$ChocolateyProfile"
-}
+$Env:DIRENV_CONFIG = "$Env:XDG_CONFIG_HOME\direnv"
 
 function which ($command) {
     Get-Command -Name $command -ErrorAction SilentlyContinue |
